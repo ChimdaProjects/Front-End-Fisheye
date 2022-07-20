@@ -43,5 +43,47 @@ function photographerFactory(data) {
         return (article);
     }
 
-    return { name, picture, getUserCardDOM }
+    function getUserHeaderPhotographer() {
+            const container = document.createElement( 'div' );
+            container.setAttribute('class',`header-container`);
+            container.setAttribute('id',`header-(${id})`);
+            const leftBlock = document.createElement('div'); 
+            leftBlock.setAttribute('class', 'left'); 
+            container.appendChild(leftBlock); 
+            const H1 = document.createElement('H1'); 
+            H1.textContent = `${name}`;
+            H1.setAttribute('class',`left-name`);
+            const cityContainer = document.createElement('p'); 
+            cityContainer.setAttribute('class', 'city'); 
+            cityContainer.textContent  = `${city}, ${country}`; 
+            const tag = document.createElement('p'); 
+            tag.setAttribute('class', 'tag'); 
+            tag.textContent = `${tagline}`; 
+
+            leftBlock.appendChild(H1); 
+            leftBlock.appendChild(cityContainer); 
+            leftBlock.appendChild(tag); 
+
+            const blocB = document.createElement('div'); 
+            blocB.className = 'middle'; 
+            container.appendChild(blocB);
+            const buttonContact = document.querySelector(".contact_button");
+            blocB.appendChild(buttonContact);
+    
+            const right = document.createElement('div'); 
+            right.setAttribute('class', 'right'); 
+            container.appendChild(right); 
+            const img = document.createElement('img'); 
+            img.setAttribute('src', `${picture}`); 
+            img.setAttribute('alt', `${name}`); 
+            img.setAttribute('id', `${id}`); 
+            right.appendChild(img); 
+
+            return (container)
+        }
+    
+
+    
+
+    return { name, picture, getUserCardDOM, getUserHeaderPhotographer }
 }
