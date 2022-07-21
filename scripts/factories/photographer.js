@@ -42,6 +42,58 @@ function photographerFactory(data) {
 
         return (article);
     }
+        function getUserHeaderPhotographer() {
+            // DOM element
+            const buttonContact = document.querySelector(".contact_button");
 
-    return { name, picture, getUserCardDOM }
+            // Creation DOM elements
+            const container = document.createElement( 'div' );
+            const leftSection = document.createElement('div'); 
+            const namePhotographer = document.createElement('h1'); 
+            const location = document.createElement('p'); 
+            const tag = document.createElement('p'); 
+            const middleSection = document.createElement('div'); 
+            const rightSection = document.createElement('div'); 
+            const img = document.createElement('img'); 
+
+            // Add attribute for DOM elements
+            container.setAttribute('id',`header-(${id})`);
+            img.setAttribute('src', `${picture}`); 
+            img.setAttribute('alt', `${name}`); 
+            img.setAttribute('id', `${id}`); 
+            
+            // add classname for DOM elements
+            container.className= 'header-container';
+            leftSection.className = 'left-section'; 
+            namePhotographer.className = 'left-name';
+            location.className ='left-city';
+            tag.className = 'left-tag'; 
+            middleSection.className = 'middle-section';
+            rightSection.className =  'right-section'; 
+            
+
+            //add content for DOM elements
+            namePhotographer.textContent = `${name}`;
+            location.textContent  = `${city}, ${country}`; 
+            tag.textContent = `${tagline}`; 
+
+            // Add nodes child
+            container.appendChild(leftSection); 
+            leftSection.appendChild(namePhotographer); 
+            leftSection.appendChild(location); 
+            leftSection.appendChild(tag); 
+            container.appendChild(middleSection);
+            middleSection.appendChild(buttonContact);
+            container.appendChild(rightSection); 
+            rightSection.appendChild(img); 
+
+            return (container)
+        }
+
+
+
+
+
+
+    return { name, picture, getUserCardDOM, getUserHeaderPhotographer }
 }

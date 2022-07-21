@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -8,8 +9,10 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo"  alt="logo de Fisheye - Home page"  role="img" />
+    <header role="banner">
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="logo"  alt="logo de Fisheye - Home page"  role="img" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -31,6 +34,8 @@
 				</form>
 			</div>
 		</div>
+    <script src="scripts/factories/Photographer.js"></script>
+    <script src="scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
