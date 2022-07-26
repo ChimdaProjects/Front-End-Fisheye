@@ -7,7 +7,7 @@
  function getIdFromParams() {
   var url = document.location.href;
   console.log('url courante : ', url);
-  const params = (new URL(url)).searchParams;;
+  const params = (new URL(url)).searchParams;
   let idPhotographer = parseInt(params.get('id'));
   console.log('id :', idPhotographer);
 

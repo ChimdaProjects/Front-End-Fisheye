@@ -13,6 +13,8 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute('role', 'article');
+        article.setAttribute('tabindex', 0);
         const a = document.createElement('a');
         a.setAttribute('href', urlPhotographers);
         const img = document.createElement( 'img' );
