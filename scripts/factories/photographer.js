@@ -39,8 +39,13 @@ function photographerFactory(data) {
         a.appendChild(divInfos);
         divInfos.appendChild(pLocation);
         divInfos.appendChild(pTagline);
-        divInfos.appendChild(pPrice);
-
+        divInfos.appendChild(pPrice);   
+        // add event to an article when you press enter to watch a photographer's page
+        article.addEventListener("keypress", function(event){
+            if (event.key==="Enter") {
+                location.href=urlPhotographers;
+            }
+        })
 
         return (article);
     }

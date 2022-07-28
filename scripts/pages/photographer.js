@@ -58,12 +58,39 @@ async function displayHeaderPhotographer(photographer) {
 };
 
 /**
+ * Cette fonction permet d'afficher le filtre
+ */
+function displayFilterMenu() {
+  const buttonFilterElt = document.querySelector(".filter-btn");
+  buttonFilterElt.classList.toggle("hidden");
+  if (buttonFilterElt.classList =="filter-btn hidden") {
+    buttonFilterElt.setAttribute('aria-expended', 'true');
+  }
+  const filterList = document.querySelector(".filter-list");
+  filterList.classList.toggle("active");
+}
+
+/**
+ * Cette fonction permet de fermer le filtre
+ */
+function closeFilterMenu() {
+  const filterList = document.querySelector(".filter-list");
+  filterList.classList.remove("active");
+  const buttonFilterElt = document.querySelector(".filter-btn");
+  buttonFilterElt.classList.remove("hidden");
+}
+
+
+
+
+/**
 * Initialisation de la page photographer.html
 */
 async function init() {
  const photographer = await getPhotographersData();
  console.log('photographer : ', photographer)
  displayHeaderPhotographer(photographer);
+
 };
 
 init();

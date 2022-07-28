@@ -124,3 +124,66 @@ form input {
     border: none;
     border-radius: 5px;
 }
+/* filter */
+#filter {
+    display: flex;
+    flex-direction: row;
+    margin:1.5rem 6rem;
+}
+
+#filter-label {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    margin-right: 1rem;
+}
+
+#filter-container {
+    background: #911C1C;
+    border-radius: 5px;
+    width: 170px;
+}
+
+.filter-list {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #FFFFFF;
+    position: relative;
+    display: none;
+
+}
+#filter li {
+    width: 150px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+}
+
+#popularity, #date {
+    border-bottom:1px solid #FFFFFF;
+}
+#popularity {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-btn {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    background: #FFFFFF;
+    cursor: pointer;
+    width: 170px;
+    text-align: justify;
+    
+}
+
+.active {
+    display: block;
+}
+.hidden {
+    display: none;
+}
