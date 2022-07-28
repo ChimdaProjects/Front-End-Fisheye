@@ -34,16 +34,31 @@ async function getPhotographersData(idPhotographer) {
    // on cherche le photographe correspondant à l'id de l'url
    let photographerSearched = data.find(elt => elt.id == idPhotographer);
    console.log('photographer searched :',photographerSearched);
-
    return photographerSearched;
 
  } catch (error){
    console.log(error);
    return null;
  }     
-
-
 }
+
+async function getPhotographersMedia(idPhotographer) {
+  idPhotographer = getIdFromParams();
+  try {
+    const response = await fetch("./data/photographers.json");
+    const json = await response.json();
+    const dataMedia = json.media;
+    console.log('data :', dataMedia);
+   let photographerMedias = dataMedia.filter(elt => elt.photographerId == idPhotographer)
+   console.log('media filtré', photographerMedias);
+   
+    return photographerMedias;
+ 
+  } catch (error){
+    console.log(error);
+    return null;
+  }     
+ }
 
 /**
 * Cette fonction permet d'afficher les informations du photographe
@@ -56,6 +71,18 @@ async function displayHeaderPhotographer(photographer) {
  photographerHeader.appendChild(userCardDOM);
 
 };
+
+async function displayGalleryPhotographer(medias) {
+  const gallerySection = document.querySelector(".photographer-gallery");
+  medias.forEach((media) => {
+    const mediaModel = mediaFactory(media);
+    console.log('mediaModel', mediaModel);
+    const galleryCardDOM = mediaModel.getMediaCardDOM();
+    gallerySection.appendChild(galleryCardDOM);
+  }
+  )
+
+}
 
 /**
  * Cette fonction permet d'afficher le filtre
@@ -89,7 +116,10 @@ function closeFilterMenu() {
 async function init() {
  const photographer = await getPhotographersData();
  console.log('photographer : ', photographer)
+const medias = await getPhotographersMedia();
+console.log("medias : ", medias);
  displayHeaderPhotographer(photographer);
+ displayGalleryPhotographer(medias);
 
 };
 
