@@ -27,14 +27,17 @@ async function getPhotographersData(idPhotographer) {
  idPhotographer = getIdFromParams();
  try {
    const response = await fetch("./data/photographers.json");
-   const json = await response.json();
-   console.log('json fetch : ', json);
-   const data = json.photographers;
-   console.log('data :', data);
-   // on cherche le photographe correspondant à l'id de l'url
-   let photographerSearched = data.find(elt => elt.id == idPhotographer);
-   console.log('photographer searched :',photographerSearched);
-   return photographerSearched;
+   const data = await response.json();
+   console.log('data fetch : ', data);
+
+   // on cherche les datas du photographe correspondant à l'id de l'url
+   let photographerDatas = data.photographers.find(elt => elt.id == idPhotographer);
+   console.log('photographer datas :',photographerDatas);
+
+  // on cherche les medias correspondant au photographe recherché
+   let photographerMedias = data.media.filter(elt => elt.photographerId == idPhotographer)
+   console.log('media filtré', photographerMedias);
+   return {photographerDatas, photographerMedias};
 
  } catch (error){
    console.log(error);
@@ -42,26 +45,9 @@ async function getPhotographersData(idPhotographer) {
  }     
 }
 
-async function getPhotographersMedia(idPhotographer) {
-  idPhotographer = getIdFromParams();
-  try {
-    const response = await fetch("./data/photographers.json");
-    const json = await response.json();
-    const dataMedia = json.media;
-    console.log('data :', dataMedia);
-   let photographerMedias = dataMedia.filter(elt => elt.photographerId == idPhotographer)
-   console.log('media filtré', photographerMedias);
-   
-    return photographerMedias;
- 
-  } catch (error){
-    console.log(error);
-    return null;
-  }     
- }
 
 /**
-* Cette fonction permet d'afficher les informations du photographe
+* Cette fonction permet d'afficher les informations du photographe pour l'en-tête
 * @param {*} photographer 
 */
 async function displayHeaderPhotographer(photographer) {
@@ -72,11 +58,14 @@ async function displayHeaderPhotographer(photographer) {
 
 };
 
+/**
+ * Afficher les medias pour le photographe concerné
+ * @param {*} medias 
+ */
 async function displayGalleryPhotographer(medias) {
   const gallerySection = document.querySelector(".photographer-gallery");
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media);
-    console.log('mediaModel', mediaModel);
     const galleryCardDOM = mediaModel.getMediaCardDOM();
     gallerySection.appendChild(galleryCardDOM);
   }
@@ -106,7 +95,34 @@ function closeFilterMenu() {
   const buttonFilterElt = document.querySelector(".filter-btn");
   buttonFilterElt.classList.remove("hidden");
 }
+/**
+ * Cette fonction permet de totaliser tous les likes d'un photographe
+ */
+function counterLikes() {
+  let totalLikes=0;
 
+  const likesList = document.querySelectorAll(".card-likes");
+  const containerLikes = document.querySelector(".total-likes");
+  
+  for (let like of likesList) {
+    let valueLike = parseInt(like.dataset.value);
+    totalLikes += valueLike;
+  }
+
+  containerLikes.textContent=totalLikes;
+  return totalLikes;
+}
+/**
+ * Cette fonction permet d'afficher le tarif journalier
+ * @param {*} data 
+ */
+function displayPriceDaily (data) {
+  idPhotographer = getIdFromParams();
+  const containerPrice = document.querySelector(".daily-price");
+  const {price}= data;
+  containerPrice.innerHTML = `${price}€ / jour`
+
+}
 
 
 
@@ -114,13 +130,12 @@ function closeFilterMenu() {
 * Initialisation de la page photographer.html
 */
 async function init() {
- const photographer = await getPhotographersData();
- console.log('photographer : ', photographer)
-const medias = await getPhotographersMedia();
-console.log("medias : ", medias);
- displayHeaderPhotographer(photographer);
- displayGalleryPhotographer(medias);
-
+ let data = await getPhotographersData();
+ console.log('data', data)
+ displayHeaderPhotographer(data.photographerDatas);
+ displayGalleryPhotographer(data.photographerMedias)
+ counterLikes();
+ displayPriceDaily(data.photographerDatas);
 };
 
 init();

@@ -187,3 +187,65 @@ form input {
 .hidden {
     display: none;
 }
+
+/* card gallery */
+
+.photographer-gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 100px;
+}
+
+.card-container {
+    width: 350px;
+    height: 400px;
+}
+
+.card-img, .card-video {
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.card-infos {
+    display: flex;
+    justify-content: space-between;
+}
+.card-title, .card-likes {
+    font-size: 24px;
+    line-height: 31px;
+    color: #911C1C;
+}
+
+.fa-heart {
+    color: #911C1C;
+}
+/* encart statique infos*/
+.photographer-likes-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    height: 89px;
+    background: #DB8876;
+    border-radius: 5px;
+    padding: 0 1.7rem;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    font-size: 24px;
+    line-height: 31px;
+}
+
+.container-likes {
+    display: flex;
+    align-items: center;
+}
+
+.total-likes {
+    margin-right: 0.3rem;
+}
+.total-likes .fa-heart .likes {
+    color:black;
+}

@@ -6,8 +6,9 @@
 
 
 function photographerFactory(data) {
+    
     const { name, id, city, country, tagline, price, portrait } = data;
-
+    console.log('factory data',data);
     const picture = `assets/photographers/${portrait}`;
     const urlPhotographers = `/photographer.html?id=${id}`;
 
@@ -94,9 +95,12 @@ function photographerFactory(data) {
             container.appendChild(rightSection); 
             rightSection.appendChild(img); 
 
-            return (container)
-        }
+            return (container);
+        };
 
+    
+
+        
 
 
 
