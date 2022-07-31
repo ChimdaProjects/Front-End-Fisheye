@@ -136,6 +136,7 @@ async function init() {
  displayGalleryPhotographer(data.photographerMedias)
  counterLikes();
  displayPriceDaily(data.photographerDatas);
+ displayModal(data.photographerDatas);
 };
 
 init();
