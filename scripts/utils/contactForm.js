@@ -143,14 +143,17 @@ function submitForm(e) {
         if(!checkName) { // vérification du champ prénom
             divName.setAttribute('data-error-visible', 'true');
             divName.setAttribute('data-error', errorsMsg.last);
+            lastname.setAttribute('aria-invalid'," true");
         }
         if(!checkEmail) { // vérification du  champ email
             divEmail.setAttribute('data-error-visible', 'true');
             divEmail.setAttribute('data-error', errorsMsg.email);
+            mail.setAttribute('aria-invalid'," true");
         }
         if(!checkMessage) { // vérification du champ date de naissance
             divMsg.setAttribute('data-error-visible', 'true');
             divMsg.setAttribute('data-error', errorsMsg.message);
+            message.setAttribute('aria-invalid'," true");
 
         }
         
