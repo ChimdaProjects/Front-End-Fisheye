@@ -1,6 +1,6 @@
 // dom elements 
 const firstname = document.querySelector('input[name="prenom"]');
-const name = document.querySelector('input[name="nom"]');
+const lastname = document.querySelector('input[name="nom"]');
 const mail = document.querySelector('input[name="email"]');
 console.log('mail', mail)
 const msg = document.querySelector('input[name="message"]');
@@ -50,7 +50,7 @@ function checkContactForm(e) {
     let value = e.target.value;
     switch(e.target.id) {
         case "prenom":
-            if (value.length > 2 && regexName.test(value)) {
+            if (value.length > 1 && regexName.test(value)) {
                 checkFirstName=true;
                 valueFields.prenom = value;
                 console.log("prenom",value);
@@ -65,7 +65,7 @@ function checkContactForm(e) {
         break;
         
         case "nom":
-            if (value.length > 2 && regexName.test(value)) {
+            if (value.length >= 1 && regexName.test(value)) {
                 checkName=true;
                 valueFields.nom = value;
                 console.log("nom",value);
@@ -75,6 +75,7 @@ function checkContactForm(e) {
                 checkName=false;
                 divName.setAttribute('data-error-visible', 'true');
                 divName.setAttribute('data-error', errorsMsg.last);
+                name.setAttribute('aria-invalid'," true");
             }
         break;
 
@@ -89,24 +90,32 @@ function checkContactForm(e) {
                 checkEmail = false;
                 divEmail.setAttribute('data-error-visible', 'true');
                 divEmail.setAttribute('data-error', errorsMsg.email);
+                mail.setAttribute('aria-invalid'," true");
             };
         break;
 
         case "message":
-            if (value.length > 0) {
+            if (value.length > 1) {
                 checkMessage=true;
                 valueFields.message = value;
                 console.log("msg",value);
                 divMsg.setAttribute('data-error-visible', 'false');
             } else {
                 checkMessage=false;
-                divEmail.setAttribute('data-error-visible', 'true');
-                divEmail.setAttribute('data-error', errorsMsg.message);
+                divMsg.setAttribute('data-error-visible', 'true');
+                divMsg.setAttribute('data-error', errorsMsg.message);
             }
         break;
         default:
-            console.log('Il ya eu un pépin')
+            console.log('Il ya eu un pépin', console.error())
     }
+}
+
+function clearDatas () {
+    firstname.value="";
+    lastname.value="";
+    mail.value="";
+    msg.value="";
 }
 
 console.log('valueFields', valueFields);
@@ -121,9 +130,30 @@ function submitForm(e) {
             console.log('valeurs envoyées: ',valueFields );
         // on appelle cette fonction pour fermer la modale à la soumission
         closeModal();
-        alert('votre message a bien été envoyé !')
+        alert(`votre message a bien été envoyé ! Les champs remplis :
+        Prénom: ${valueFields.prenom}, Nom: ${valueFields.nom}, Email: ${valueFields.email}, Message: ${valueFields.message}`);
+        clearDatas();
     } else {
-       alert('merci de saisir les bonnes données')
+        if(!checkFirstName) { // vérification du prénom
+            // on affiche le message d'erreur
+            divFirst.setAttribute('data-error-visible', "true");
+                divFirst.setAttribute('data-error', errorsMsg.first);
+                firstname.setAttribute('aria-invalid'," true");
+        }
+        if(!checkName) { // vérification du champ prénom
+            divName.setAttribute('data-error-visible', 'true');
+            divName.setAttribute('data-error', errorsMsg.last);
+        }
+        if(!checkEmail) { // vérification du  champ email
+            divEmail.setAttribute('data-error-visible', 'true');
+            divEmail.setAttribute('data-error', errorsMsg.email);
+        }
+        if(!checkMessage) { // vérification du champ date de naissance
+            divMsg.setAttribute('data-error-visible', 'true');
+            divMsg.setAttribute('data-error', errorsMsg.message);
+
+        }
+        
      
     }
         
