@@ -124,7 +124,11 @@ function displayPriceDaily (data) {
 
 }
 
-
+async function displayModal(infosphoto) {
+ infosphoto = await getPhotographersData();
+ console.log('display modal',infosphoto);
+ let name = ''
+}
 
 /**
 * Initialisation de la page photographer.html
