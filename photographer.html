@@ -83,33 +83,33 @@
     <div class="photographer-informations">
     </div>
     </main>
-    <div id="contact_modal" role="dialog" aria-hidden="true">
+    <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modal-title">
 			<div class="modal">
 				<header>
           <h2 class="modal-title">
             Contactez-moi <br>
             <span class="modal-name"></span>
           </h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" class="close_modal" tabindex="0" />
         </header>
-				<form id="formContact" class="form" action="index.html"
-        method="get">
+				<form id="formContact" class="form" method="get">
+        
 					<fieldset>
             <div class="formData" class="divFirstName" id="divFirst" data-error>
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" class="form-input text-control" aria-required=true aria-invalid=false/>
+              <input type="text" name="prenom" id="prenom" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
             </div>
             <div class="formData" id="divLast" data-error>
               <label for="nom">Nom</label>
-						<input type="text" name="nom" id="nom" class="form-input text-control" aria-required=true aria-invalid=false/>
+						<input type="text" name="nom" id="nom" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
             </div>
             <div  class="formData" id="divMail" data-error>
               <label for="email">Quel est votre e-mail ?</label>
-            <input type="email" name="email" id="addmail" class="form-input text-control" aria-required=true aria-invalid=false/>
+            <input type="email" name="email" id="addmail" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
             </div>
             <div  class="formData" id="divMessage" data-error>
               <label for="message">Votre message</label>
-            <input type="text" id="message" name="message" class="form-input text-control" aria-required=true aria-invalid=false
+            <input type="text" id="message" name="message" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"
             size="150">
             </div>
             

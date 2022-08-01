@@ -45,7 +45,9 @@ for (let input of inputs) {
 }
 formContact.addEventListener('submit', submitForm);
 
-
+/**
+ * Check the value of each input
+ */
 function checkContactForm(e) {
     let value = e.target.value;
     switch(e.target.id) {
@@ -153,7 +155,7 @@ function submitForm(e) {
         if(!checkMessage) { // vérification du champ date de naissance
             divMsg.setAttribute('data-error-visible', 'true');
             divMsg.setAttribute('data-error', errorsMsg.message);
-            message.setAttribute('aria-invalid'," true");
+            msg.setAttribute('aria-invalid'," true");
 
         }
         
@@ -164,16 +166,30 @@ function submitForm(e) {
 function displayModal(data) {
     
     const modal = document.getElementById("contact_modal");
+    const btnModal = document.getElementById("contact_button");
 	modal.style.display = "block";
     const nameContact = document.querySelector(".modal-name");
     nameContact.innerHTML = `${data.name}`;
     console.log(data.name);
+    modal.setAttribute('aria-hidden', 'false')
     modal.focus();
-    
+  
 }
+ // Close modal when escape key is pressed
+const modal = document.getElementById("contact_modal");
+modal.addEventListener('keydown', escapeModal); 
+function escapeModal(e){
+    console.log('keydown')
+     if (modal.getAttribute('aria-hidden') == 'false' && e.keyCode === 27) {
+         closeModal()
+     }
+  };
+
+
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+   
 }
 
