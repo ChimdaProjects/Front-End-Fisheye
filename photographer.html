@@ -83,8 +83,22 @@
     <div class="photographer-informations">
     </div>
     </main>
-    <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modal-title">
-			<div class="modal">
+    <!--Modal Carousel-->
+    <div id="main-wrapper" aria-hidden="false">
+      <h1>My carousel</h1>
+      <div class="wrapper-media">
+        
+        <button id="leftBtn" aria-label="navigate to previous photo" onkeydown="handleKeyDownLeft(e)" ><i class=" fa fa-solid fa-angle-left"></i></button>
+        <div id="content_modal">
+          <ul class="carousel" aria-label="Our selection of my gallery">  
+          </ul>
+        </div>
+        <button id="rightBtn" aria-label="navigate to next photo" onkeydown="handleKeyDownRight(e)"> <i class=" fa fa-solid fa-angle-right"></i></button>
+      </div>
+    </div>
+    <!--Modal form contact -->
+    <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modal-title" tabindex="0">
+			<div class="modal" tabindex="0">
 				<header>
           <h2 class="modal-title">
             Contactez-moi <br>
@@ -97,7 +111,7 @@
 					<fieldset>
             <div class="formData" class="divFirstName" id="divFirst" data-error>
               <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
+              <input type="text" name="prenom" id="prenom" class="form-input text-control" autofocus aria-required=true aria-invalid=false tabindex="0"/>
             </div>
             <div class="formData" id="divLast" data-error>
               <label for="nom">Nom</label>

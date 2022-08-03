@@ -6,7 +6,7 @@
 
 
 function photographerFactory(data) {
-    
+   
     const { name, id, city, country, tagline, price, portrait } = data;
     console.log('factory data',data);
     const picture = `assets/photographers/${portrait}`;
@@ -94,17 +94,11 @@ function photographerFactory(data) {
             middleSection.appendChild(buttonContact);
             container.appendChild(rightSection); 
             rightSection.appendChild(img); 
-
             return (container);
+
+
         };
+  
 
-    
-
-        
-
-
-
-
-
-    return { name, picture, getUserCardDOM, getUserHeaderPhotographer }
+    return { name, picture, getUserCardDOM, getUserHeaderPhotographer}
 }

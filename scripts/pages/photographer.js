@@ -1,5 +1,4 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
 /**
  * Cette fonction permet de récupérer l'id dans l'url courante
  * @returns idPhotographer - id du photographe de la page affichée
@@ -38,6 +37,7 @@ async function getPhotographersData(idPhotographer) {
    let photographerMedias = data.media.filter(elt => elt.photographerId == idPhotographer)
    console.log('media filtré', photographerMedias);
    return {photographerDatas, photographerMedias};
+   
 
  } catch (error){
    console.log(error);
@@ -51,11 +51,10 @@ async function getPhotographersData(idPhotographer) {
 * @param {*} photographer 
 */
 async function displayHeaderPhotographer(photographer) {
- const photographerHeader = document.querySelector(".photograph-header");
- const photographerModel = photographerFactory(photographer);
- const userCardDOM = photographerModel.getUserHeaderPhotographer();
- photographerHeader.appendChild(userCardDOM);
-
+  const photographerHeader = document.querySelector(".photograph-header");
+  const photographerModel = photographerFactory(photographer);
+  const userCardDOM = photographerModel.getUserHeaderPhotographer();
+  photographerHeader.appendChild(userCardDOM);
 };
 
 /**
@@ -68,6 +67,9 @@ async function displayGalleryPhotographer(medias) {
     const mediaModel = mediaFactory(media);
     const galleryCardDOM = mediaModel.getMediaCardDOM();
     gallerySection.appendChild(galleryCardDOM);
+
+    // add event listener when the user clicks in on photographer's media
+    galleryCardDOM.addEventListener('click', openModalLightbox);
   }
   )
 
@@ -124,23 +126,49 @@ function displayPriceDaily (data) {
 
 }
 
-async function displayModal(infosphoto) {
- infosphoto = await getPhotographersData();
- console.log('display modal',infosphoto);
- let name = ''
+/** LiGHTBOX */
+
+/**
+ * this function opens the lightbox when the user clicks on a media
+ * @param {*} e 
+ */
+async function openModalLightbox(e, id) {
+  id = e.target.id;
+  console.log('lb id', id)
+  console.log('open');
+  let data = await getPhotographersData();
+  let dataMedias = data.photographerMedias;
+  console.log('lb data',dataMedias);
+
+  let mediaSelected = dataMedias.filter(elt => elt.id == id);
+  console.log('media lb', mediaSelected);
+
+  const mediaModel = mediaFactory(mediaSelected[0]);
+  const selectedCardDom = mediaModel.getMediaCardLightbox();  
 }
+
+function closeModalLb() {
+
+  const containerModal = document.querySelector('#main-wrapper');
+  containerModal.style.display ="none";
+}
+
+
+
+
 
 /**
 * Initialisation de la page photographer.html
 */
 async function init() {
  let data = await getPhotographersData();
- console.log('data', data)
+ console.log('data init', data)
  displayHeaderPhotographer(data.photographerDatas);
  displayGalleryPhotographer(data.photographerMedias)
  counterLikes();
  displayPriceDaily(data.photographerDatas);
- displayModal(data.photographerDatas);
+ 
+
 };
 
 init();

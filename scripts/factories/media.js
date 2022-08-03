@@ -4,7 +4,7 @@ function mediaFactory(dataMedia) {
     
 
     if(dataMedia.hasOwnProperty('image')) {
-        media = `<img src="assets/images/${image}" alt=${title} id=${id} class="card-img">`;
+        media = `<img src="assets/images/${image}" alt=${title} id=${id} data-photographerId=${photographerId} class="card-img">`;
     } else if (dataMedia.hasOwnProperty('video')) {
         media = `
         <video controls class="card-video" >
@@ -35,6 +35,27 @@ function mediaFactory(dataMedia) {
         gallerySection.appendChild(card);
         return (card);
     }
-    return { media, getMediaCardDOM}
+
+    function getMediaCardLightbox() {
+        const containerModal = document.querySelector('.carousel');
+        const cardMedia = document.createElement('li');
+            cardMedia.setAttribute('class',`img-container`);
+            cardMedia.setAttribute('id',`${id}`);
+            cardMedia.innerHTML = `
+                
+                <button onclick="closeModalLb()"  id="close_modal_lb" tabindex="0"> X </button>
+                <div id="container-media">
+                ${media}
+                <p id="lightbox-text"> ${title} </p>
+                </div>
+               
+                `;
+            
+        containerModal.appendChild(cardMedia);   
+
+        return (cardMedia);
+
+    }
+    return { media, getMediaCardDOM, getMediaCardLightbox}
 }
 

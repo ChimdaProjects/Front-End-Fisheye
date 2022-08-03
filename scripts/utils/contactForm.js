@@ -163,16 +163,19 @@ function submitForm(e) {
     }
         
 }
-function displayModal(data) {
-    
+async function displayModal() {
+    let namePhoto = await getPhotographersData();
+    let photographerInfo = namePhoto.photographerDatas;
+    console.log('name photo', photographerInfo)
     const modal = document.getElementById("contact_modal");
+    const divModal = document.querySelector('.modal');
     const btnModal = document.getElementById("contact_button");
 	modal.style.display = "block";
     const nameContact = document.querySelector(".modal-name");
-    nameContact.innerHTML = `${data.name}`;
-    console.log(data.name);
+    nameContact.innerHTML = `${photographerInfo.name}`;
     modal.setAttribute('aria-hidden', 'false')
-    modal.focus();
+    divModal.focus();
+
   
 }
  // Close modal when escape key is pressed
