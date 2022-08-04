@@ -33,6 +33,7 @@ function mediaFactory(dataMedia) {
             </p>
             `
         gallerySection.appendChild(card);
+        card.addEventListener('click', openModalLightbox);
         return (card);
     }
 
@@ -56,6 +57,7 @@ function mediaFactory(dataMedia) {
         return (cardMedia);
 
     }
+    
     return { media, getMediaCardDOM, getMediaCardLightbox}
 }
 

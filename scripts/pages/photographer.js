@@ -1,4 +1,12 @@
 //Mettre le code JavaScript lié à la page photographer.html
+// Initialisation des variables
+let data;
+let imgSelectedId;
+let idPhotographer;
+let photographerDatas;
+let mediaDatas;
+
+
 /**
  * Cette fonction permet de récupérer l'id dans l'url courante
  * @returns idPhotographer - id du photographe de la page affichée
@@ -7,7 +15,7 @@
   var url = document.location.href;
   console.log('url courante : ', url);
   const params = (new URL(url)).searchParams;
-  let idPhotographer = parseInt(params.get('id'));
+  idPhotographer = parseInt(params.get('id'));
   console.log('id :', idPhotographer);
 
   return idPhotographer;
@@ -26,19 +34,19 @@ async function getPhotographersData(idPhotographer) {
  idPhotographer = getIdFromParams();
  try {
    const response = await fetch("./data/photographers.json");
-   const data = await response.json();
+   data = await response.json();
    console.log('data fetch : ', data);
 
    // on cherche les datas du photographe correspondant à l'id de l'url
-   let photographerDatas = data.photographers.find(elt => elt.id == idPhotographer);
-   console.log('photographer datas :',photographerDatas);
+  photographerDatas = data.photographers.find(elt => elt.id == idPhotographer);
+   console.log('photographer datas :', photographerDatas);
 
   // on cherche les medias correspondant au photographe recherché
-   let photographerMedias = data.media.filter(elt => elt.photographerId == idPhotographer)
-   console.log('media filtré', photographerMedias);
-   return {photographerDatas, photographerMedias};
-   
+   mediaDatas = data.media.filter(elt => elt.photographerId == idPhotographer)
+   console.log('media filtré', mediaDatas);
 
+   return {photographerDatas, mediaDatas};
+   
  } catch (error){
    console.log(error);
    return null;
@@ -119,9 +127,8 @@ function counterLikes() {
  * @param {*} data 
  */
 function displayPriceDaily (data) {
-  idPhotographer = getIdFromParams();
   const containerPrice = document.querySelector(".daily-price");
-  const {price}= data;
+  const {price}= data.photographerDatas;
   containerPrice.innerHTML = `${price}€ / jour`
 
 }
@@ -132,27 +139,25 @@ function displayPriceDaily (data) {
  * this function opens the lightbox when the user clicks on a media
  * @param {*} e 
  */
-async function openModalLightbox(e, id) {
+async function openModalLightbox(e) {
   id = e.target.id;
   console.log('lb id', id)
   console.log('open');
-  let data = await getPhotographersData();
-  let dataMedias = data.photographerMedias;
-  console.log('lb data',dataMedias);
 
-  let mediaSelected = dataMedias.filter(elt => elt.id == id);
+  let mediaSelected = mediaDatas.filter(elt => elt.id == id);
   console.log('media lb', mediaSelected);
 
   const mediaModel = mediaFactory(mediaSelected[0]);
   const selectedCardDom = mediaModel.getMediaCardLightbox();  
+
+  return selectedCardDom;
 }
 
 function closeModalLb() {
-
+  
   const containerModal = document.querySelector('#main-wrapper');
   containerModal.style.display ="none";
 }
-
 
 
 
@@ -161,12 +166,13 @@ function closeModalLb() {
 * Initialisation de la page photographer.html
 */
 async function init() {
- let data = await getPhotographersData();
- console.log('data init', data)
- displayHeaderPhotographer(data.photographerDatas);
- displayGalleryPhotographer(data.photographerMedias)
+  data = await getPhotographersData();
+  console.log('data init',data);
+
+ displayHeaderPhotographer(photographerDatas);
+ displayGalleryPhotographer(mediaDatas);
  counterLikes();
- displayPriceDaily(data.photographerDatas);
+ displayPriceDaily(data);
  
 
 };
