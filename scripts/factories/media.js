@@ -4,11 +4,11 @@ function mediaFactory(dataMedia) {
     
 
     if(dataMedia.hasOwnProperty('image')) {
-        media = `<img src="assets/images/${image}" alt=${title} id=${id} data-photographerId=${photographerId} class="card-img">`;
+        media = `<img src="assets/images/${image}" alt=${title} id=${id}  class="card-img">`;
     } else if (dataMedia.hasOwnProperty('video')) {
         media = `
-        <video controls class="card-video" >
-            <source src="assets/images/${video}" alt=${title} id=${id} type="video/mp4" >
+        <video controls class="card-video" id=${id} >
+            <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
             Votre navigateur ne permet pas de lire les vidéos.
         </video> `
     }

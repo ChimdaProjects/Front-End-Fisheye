@@ -6,6 +6,11 @@ let idPhotographer;
 let photographerDatas;
 let mediaDatas;
 
+const btnLeft = document.querySelector('#leftBtn');
+const btnRight = document.querySelector('#rightBtn');
+btnLeft.addEventListener('click', displayPreviousMedia);
+btnRight.addEventListener('click', displayNextMedia);
+
 
 /**
  * Cette fonction permet de récupérer l'id dans l'url courante
@@ -19,11 +24,7 @@ let mediaDatas;
   console.log('id :', idPhotographer);
 
   return idPhotographer;
-
-
 }
-let result = {};
-
 
 /**
 * 
@@ -55,8 +56,8 @@ async function getPhotographersData(idPhotographer) {
 
 
 /**
-* Cette fonction permet d'afficher les informations du photographe pour l'en-tête
-* @param {*} photographer 
+* Display the info of the concerned photographer
+* @param {Object} photographer - photographer's datas
 */
 async function displayHeaderPhotographer(photographer) {
   const photographerHeader = document.querySelector(".photograph-header");
@@ -66,8 +67,8 @@ async function displayHeaderPhotographer(photographer) {
 };
 
 /**
- * Afficher les medias pour le photographe concerné
- * @param {*} medias 
+ * Display the media for the photographer concerned
+ * @param {object} medias - all medias of the photographer concerned 
  */
 async function displayGalleryPhotographer(medias) {
   const gallerySection = document.querySelector(".photographer-gallery");
@@ -75,16 +76,13 @@ async function displayGalleryPhotographer(medias) {
     const mediaModel = mediaFactory(media);
     const galleryCardDOM = mediaModel.getMediaCardDOM();
     gallerySection.appendChild(galleryCardDOM);
-
-    // add event listener when the user clicks in on photographer's media
-    galleryCardDOM.addEventListener('click', openModalLightbox);
   }
   )
 
 }
 
 /**
- * Cette fonction permet d'afficher le filtre
+ * This function opens the filter
  */
 function displayFilterMenu() {
   const buttonFilterElt = document.querySelector(".filter-btn");
@@ -97,7 +95,7 @@ function displayFilterMenu() {
 }
 
 /**
- * Cette fonction permet de fermer le filtre
+ * This function closes the filter
  */
 function closeFilterMenu() {
   const filterList = document.querySelector(".filter-list");
@@ -106,11 +104,10 @@ function closeFilterMenu() {
   buttonFilterElt.classList.remove("hidden");
 }
 /**
- * Cette fonction permet de totaliser tous les likes d'un photographe
+ * This function totals all the likes of a photographer
  */
 function counterLikes() {
   let totalLikes=0;
-
   const likesList = document.querySelectorAll(".card-likes");
   const containerLikes = document.querySelector(".total-likes");
   
@@ -123,7 +120,7 @@ function counterLikes() {
   return totalLikes;
 }
 /**
- * Cette fonction permet d'afficher le tarif journalier
+ * this function displays the daily rate
  * @param {*} data 
  */
 function displayPriceDaily (data) {
@@ -137,33 +134,112 @@ function displayPriceDaily (data) {
 
 /**
  * this function opens the lightbox when the user clicks on a media
- * @param {*} e 
+ * @param {Event} e element clicked
  */
-async function openModalLightbox(e) {
-  id = e.target.id;
-  console.log('lb id', id)
+function openModalLightbox(e) {
+  const containerModal = document.querySelector('#main-wrapper');
+  const main = document.querySelector('#main');
+  containerModal.style.display ="flex";
+  imgSelectedId =parseInt( e.target.id);
+  console.log('lb id',   imgSelectedId);
   console.log('open');
 
-  let mediaSelected = mediaDatas.filter(elt => elt.id == id);
+  let mediaSelected = mediaDatas.find(elt => elt.id === imgSelectedId);
   console.log('media lb', mediaSelected);
-
-  const mediaModel = mediaFactory(mediaSelected[0]);
-  const selectedCardDom = mediaModel.getMediaCardLightbox();  
-
-  return selectedCardDom;
-}
-
-function closeModalLb() {
   
-  const containerModal = document.querySelector('#main-wrapper');
-  containerModal.style.display ="none";
+  let mediaModel = mediaFactory(mediaSelected);
+  mediaModel.getMediaCardLightbox();  
+  main.style.display = 'none';
+  return mediaSelected;
+
 }
-
-
-
 
 /**
-* Initialisation de la page photographer.html
+ * This function closed the lightbox
+ */
+function closeModalLb() {
+  const containerModal = document.querySelector('#main-wrapper');
+  containerModal.style.display ="none";
+  const main = document.querySelector('#main');
+  main.style.display = 'block';
+}
+let currentIndex; 
+let nextIndex;
+let previousIndex;
+
+/**
+ * This function displays the previous media when you clicked on the left arrow of the lightbox
+ */
+function displayPreviousMedia () {
+  let liMedia = document.querySelector('.img-container');
+  liMedia.remove();
+  console.log('click gauche');
+  currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
+  console.log('current index',(currentIndex));
+
+  previousIndex = currentIndex - 1;
+  console.log('previous', (previousIndex));
+
+  if (previousIndex < 0) {
+    console.log('condition 0')
+    currentIndex = (mediaDatas.length);
+    previousIndex = currentIndex - 1;
+    slidePrevious = mediaDatas[previousIndex];
+    let mediaModel = mediaFactory(slidePrevious);
+    mediaModel.getMediaCardLightbox();  
+    imgSelectedId = mediaDatas[previousIndex].id;
+  } else {
+    console.log('condition autre')
+    slidePrevious = mediaDatas[previousIndex];
+    console.log('slideprevious', slidePrevious);
+    let mediaModel = mediaFactory(slidePrevious);
+    mediaModel.getMediaCardLightbox();  
+    imgSelectedId = mediaDatas[previousIndex].id;
+  }
+btnLeft.focus();
+
+}
+
+/**
+ *  This function displays the previous media when you clicked on the right arrow of the lightbox
+ */
+function displayNextMedia () {
+  console.log('click droite');
+  let liMedia = document.querySelector('.img-container');
+  liMedia.remove();
+  currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
+  console.log('current index',(currentIndex));
+
+  nextIndex = currentIndex + 1;
+  console.log('next', (nextIndex));
+
+  if (nextIndex <= mediaDatas.length-1) {
+    slideNext = mediaDatas[nextIndex];
+    console.log('next', slideNext);
+    let mediaModel = mediaFactory(slideNext);
+    mediaModel.getMediaCardLightbox();  
+    imgSelectedId = mediaDatas[nextIndex].id;
+  } else {
+    currentIndex = -1;
+    nextIndex = currentIndex + 1;
+    slideNext = mediaDatas[nextIndex];
+    let mediaModel = mediaFactory(slideNext);
+    mediaModel.getMediaCardLightbox();  
+    imgSelectedId = mediaDatas[nextIndex].id;
+    
+   
+  }
+  btnRight.focus();
+ 
+
+}
+
+function handleKeyDownLeft(e) {
+
+}
+
+/**
+* Initialisation of the page photographer.html
 */
 async function init() {
   data = await getPhotographersData();

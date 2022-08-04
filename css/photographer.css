@@ -173,10 +173,13 @@
 /* card gallery */
 
 .photographer-gallery {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin: 0 100px;
+    
+    margin: auto 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
 .card-container {
@@ -221,7 +224,7 @@
     padding: 0 1.7rem;
     position: fixed;
     bottom: 5px;
-    right: 5px;
+    right: 16rem;
     font-size: 24px;
     line-height: 31px;
 }
@@ -308,10 +311,14 @@ form button {
 #main-wrapper {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     top: 10%;
-    left: 10%
+    left: 20%;
+    
+    
 }
+
+
 #close_modal_lb, #leftBtn, #rightBtn {
     width: 50px;
     height: 50px;
@@ -329,24 +336,33 @@ form button {
     width: 100%;
     display: flex;
     align-items: center;
+    
 }
 
 
 .img-container {
     display: flex;
     flex-direction: row-reverse;
-   
-
+    
 }
-.img-container img {
+
+li:nth-child(1){
+    overflow: hidden;
+}
+.img-container img , .img-container video {
     width: 1050px;
     height: 900px;
     object-fit: cover;
     justify-content: center;
+    border: 5px solid #901C1C;
+    border-radius: 0;
 }
 
 #lightbox-text {
     color:#911C1C;
     font-size: 24px;
     margin:1rem 0;
+}
+.carousel {
+    display: flex;
 }
