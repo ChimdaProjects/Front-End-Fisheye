@@ -136,16 +136,13 @@ function displayPriceDaily (data) {
  * this function opens the lightbox when the user clicks on a media
  * @param {Event} e element clicked
  */
-function openModalLightbox(e) {
-  
-  
+function openModalLightbox(mediaIdSelected) {
   containerModal.style.display ="flex";
-  imgSelectedId =parseInt( e.target.id);
-  console.log('lb id',   imgSelectedId);
   console.log('open');
-
-  let mediaSelected = mediaDatas.find(elt => elt.id === imgSelectedId);
-  console.log('media lb', mediaSelected);
+  btnLeft.style.display ="flex";
+  btnRight.style.display="flex";
+  let mediaSelected = mediaDatas.find(elt => elt.id == mediaIdSelected);
+  console.log('media selected', mediaSelected);
   
   let mediaModel = mediaFactory(mediaSelected);
   mediaModel.getMediaCardLightbox();  
@@ -198,7 +195,8 @@ function displayPreviousMedia () {
     mediaModel.getMediaCardLightbox();  
     imgSelectedId = mediaDatas[previousIndex].id;
   }
-btnLeft.focus();
+
+  btnLeft.focus();
 
 }
 
@@ -228,9 +226,8 @@ function displayNextMedia () {
     let mediaModel = mediaFactory(slideNext);
     mediaModel.getMediaCardLightbox();  
     imgSelectedId = mediaDatas[nextIndex].id;
-    
-   
   }
+
   btnRight.focus();
  
 
@@ -253,10 +250,18 @@ containerModal.addEventListener('keydown', handleKeyDownClose);
 function handleKeyDownClose(e) {
   if ( e.keyCode === 27) {
     closeModalLb();
-    location.reload();
+    
 }
 }
 
+
+function addLikes (id) {
+  let imgSelected= mediaDatas.find(elt => elt.id == id);
+  console.log( 'data img click', imgSelected);
+  let mediaModel = mediaFactory(imgSelected);
+  mediaModel.addOneLike();
+  counterLikes(); 
+}
 
 /**
 * Initialisation of the page photographer.html

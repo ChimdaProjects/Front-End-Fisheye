@@ -1,8 +1,8 @@
 function mediaFactory(dataMedia) {
     const { id, photographerId, title, image, video, likes, date, price } = dataMedia;
     let media='';
-    
 
+   
     if(dataMedia.hasOwnProperty('image')) {
         media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
     } else if (dataMedia.hasOwnProperty('video')) {
@@ -14,26 +14,28 @@ function mediaFactory(dataMedia) {
     }
   
     const gallerySection = document.querySelector(".photographer-gallery");
-    
+    const likesContainer = document.getElementById(`likes-${id}`);
+    const cardInfos = document.getElementById(`cardInfos-${id}`);
+
     function getMediaCardDOM() {
         const card = document.createElement('div');
         card.setAttribute('class', 'card-container');
         card.innerHTML= 
             `
-            <div class="card-gallery" tabindex="0">
+            <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})">
               ${media}
             </div>
-            <div class="card-infos">
-            <p class= "card-title">
+            <div class="card-infos" id="cardInfos-${id}"  >
+            <p class= "card-title" tabIndex="0"             >
                 ${title}
-            <p>
-            <p class="card-likes" data-value=${likes}>
+            </p>
+            <p class="card-likes" data-value=${likes}  data-id=${id} id='likes-${id}' onclick="addLikes(${id})" tabIndex="0">
                 ${likes}
-                <i  class="fa fa-solid fa-heart" aria-label="likes"></i>
+                <i  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></i>
             </p>
             `
         gallerySection.appendChild(card);
-        card.addEventListener('click', openModalLightbox);
+        //card.addEventListener('click', openModalLightbox);
         return (card);
     }
 
@@ -55,9 +57,27 @@ function mediaFactory(dataMedia) {
         containerModal.appendChild(cardMedia);   
 
         return (cardMedia);
-
+                                                                                                                                                                            
     }
     
-    return { media, getMediaCardDOM, getMediaCardLightbox}
+    function addOneLike () {
+        let addLike = likes + 1;
+        console.log('likescontainer', likesContainer);
+        likesContainer.innerHTML="";
+        cardInfos.innerHTML =
+        `
+            <p class= "card-title" tabIndex="0"             >
+                ${title}
+            </p>
+            <p class="card-likes" data-value=${addLike}  data-id=${id} id='likes-${id}'  tabIndex="0">
+                ${addLike}
+                <i  class="fa fa-solid fa-heart" aria-label="likes"></i>
+            </p>  
+        `
+        console.log('likescontainer', likesContainer);
+
+        return (likesContainer)
+    }
+    return { media, getMediaCardDOM, getMediaCardLightbox, addOneLike}
 }
 

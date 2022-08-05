@@ -222,6 +222,10 @@
 .fa-heart {
     color: #911C1C;
 }
+
+.card-likes:hover , i:hover {
+    color:blue
+}
 /* encart statique infos*/
 .photographer-likes-price {
     display: flex;
@@ -234,7 +238,7 @@
     padding: 0 1.7rem;
     position: fixed;
     bottom: 5px;
-    right: 16rem;
+    right: 5rem;
     font-size: 24px;
     line-height: 31px;
     z-index: 5;
@@ -392,4 +396,5 @@ li:nth-child(1){
 #leftBtn, #rightBtn {
     display: flex;
     justify-content: center;
+    display: none;
 }

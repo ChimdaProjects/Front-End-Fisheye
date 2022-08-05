@@ -10,6 +10,7 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
+
     <header role="banner">
       <a href="index.html">
         <img src="assets/images/logo.png" class="logo"  alt="logo de Fisheye - Home page"  role="img" />
@@ -40,9 +41,10 @@
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
-                  onclick="closeFilterMenu()"
+                   onclick="closeFilterMenu()"
                 >
                   <li 
+                  onclick="filterByPopularity()"
                     id="popularity" 
                     class="filter-list-item" 
                     data-value="popularity" 
@@ -107,7 +109,7 @@
 				<form id="formContact" class="form" method="get">
         
 					<fieldset>
-            <div class="formData" class="divFirstName" id="divFirst" data-error>
+            <div class="formData" class="divFirstName" autofocus= "autofocus" id="divFirst" data-error>
               <label for="prenom">Prénom</label>
               <input type="text" name="prenom" id="prenom" class="form-input text-control" autofocus aria-required=true aria-invalid=false tabindex="0"/>
             </div>
@@ -143,5 +145,6 @@
     <script src="scripts/factories/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/filter.js"></script>
   </body>
 </html>
