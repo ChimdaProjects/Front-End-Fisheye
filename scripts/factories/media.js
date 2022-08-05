@@ -22,14 +22,14 @@ function mediaFactory(dataMedia) {
         card.setAttribute('class', 'card-container');
         card.innerHTML= 
             `
-            <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})">
+            <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeydown="handleKeyDownMedia(event, ${id})">
               ${media}
             </div>
             <div class="card-infos" id="cardInfos-${id}"  >
             <p class= "card-title" tabIndex="0"             >
                 ${title}
             </p>
-            <p class="card-likes" data-value=${likes}  data-id=${id} id='likes-${id}' onclick="addLikes(${id})" tabIndex="0">
+            <p class="card-likes" data-value=${likes}  data-id=${id} id='likes-${id}' onclick="addLikes(${id})" onkeydown=" handleKeyDownEnterLikes(event, ${id})" tabIndex="0">
                 ${likes}
                 <i  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></i>
             </p>

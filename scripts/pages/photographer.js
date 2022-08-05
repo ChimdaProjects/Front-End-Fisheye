@@ -178,7 +178,7 @@ function displayPreviousMedia () {
 
   previousIndex = currentIndex - 1;
   console.log('previous', (previousIndex));
-
+  // si l'index précedent est inférieur à 0 c a d on est sur la 1ère img affichée.
   if (previousIndex < 0) {
     console.log('condition 0')
     currentIndex = (mediaDatas.length);
@@ -212,7 +212,7 @@ function displayNextMedia () {
 
   nextIndex = currentIndex + 1;
   console.log('next', (nextIndex));
-
+  // si l'index suivant est égal ou inférieur à la taille du tableau media
   if (nextIndex <= mediaDatas.length-1) {
     slideNext = mediaDatas[nextIndex];
     console.log('next', slideNext);
@@ -233,34 +233,58 @@ function displayNextMedia () {
 
 }
 
-function handleKeyDown(e) {
-  
-  console.log('keycode',e.keyCode);
-  if(e.keyCode === 37) {
-    return displayPreviousMedia();
-  }
-  if (e.keyCode === 39) {
-    return displayNextMedia();
-  }
-} 
 
-
-containerModal.addEventListener('keydown', handleKeyDownClose);
-
-function handleKeyDownClose(e) {
-  if ( e.keyCode === 27) {
-    closeModalLb();
-    
-}
-}
-
-
+/**
+ * This function adds one like to the media clicked
+ * @param {*} id - id de l'image cliquée
+ */
 function addLikes (id) {
   let imgSelected= mediaDatas.find(elt => elt.id == id);
   console.log( 'data img click', imgSelected);
   let mediaModel = mediaFactory(imgSelected);
   mediaModel.addOneLike();
   counterLikes(); 
+}
+
+
+// Accessibility
+
+// Scroll through carousel images
+function handleKeyDown(e) {
+  console.log('keycode',e.key);
+  // press the left arrow
+  if(e.keyCode === 37) {
+    return displayPreviousMedia();
+  }
+  // press the right arrow
+  if (e.keyCode === 39) {
+    return displayNextMedia();
+  }
+} 
+
+// close modal with the user presses escape touch
+containerModal.addEventListener('keydown', handleKeyDownClose);
+
+function handleKeyDownClose(e) {
+  if ( e.keyCode === 27) {
+    closeModalLb();
+  }
+}
+
+// open modal when the user presses enter touch
+function handleKeyDownMedia(event, id) {
+  if (event.keyCode === 13 ) {
+    console.log('press like');
+    return openModalLightbox(id);
+  }
+}
+
+// add a like when the user presses enter touch
+function handleKeyDownEnterLikes (event, id) {
+  if (event.keyCode === 13 ) {
+    console.log('press like');
+    return addLikes(id);
+  }
 }
 
 /**
