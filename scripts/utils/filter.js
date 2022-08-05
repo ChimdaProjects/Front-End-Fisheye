@@ -32,15 +32,20 @@ function filterByPopularity(media) {
 // trier par date
 function filterByDate (media) {
     media = mediaDatas;
-    let newDate = media.forEach((elt)=> {
-        let date = elt.date ;
-        let dateNew = new Date(date);
-        console.log('dateNew', dateNew)
-        return {dateNew};
+    // tri du plus récent au plus vieux
+    mediasByDate = media.sort(function compare(a,b) {
+        let dateA = new Date(a.date);
+        let dateB = new Date(b.date);
+        return dateB - dateA;
     })
 
-   console.log('new date', newDate)
-
+    console.log('media filtré par dat', mediasByDate);
+    gallerySection.innerHTML = "";
+    //
+    displayGalleryPhotographer(mediasByDate);
+    closeFilterMenu();
+    filterBtn.innerHTML = 'Date';
+    mediaDatas = mediasByDate;
 }
 
 // trier par titre
