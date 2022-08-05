@@ -24,7 +24,7 @@
           <div id="filter-label">Trier par :</div>
             <div id="filter-container">
                 <button 
-                  id="filter-btn" 
+                  id="filterBtn" 
                   class="filter-btn" 
                   aria-expended="false" 
                   aria-haspopup="listbox"
@@ -41,7 +41,7 @@
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
-                   onclick="closeFilterMenu()"
+                  
                 >
                   <li 
                   onclick="filterByPopularity()"
@@ -51,9 +51,10 @@
                     tabindex="0"
                     role="button">
                       Popularité 
-                      <i class="fa-solid fa-chevron-up"></i>
+                      <i class="fa-solid fa-chevron-up"  onclick="closeFilterMenu()"></i>
                   </li>
                   <li 
+                    onclick="filterByDate()"
                     id="date" 
                     class="filter-list-item" 
                     data-value="date" 
@@ -62,6 +63,7 @@
                     Date
                   </li>
                   <li 
+                  onclick="filterByTitle()""
                     id="title" 
                     class="filter-list-item" 
                     data-value="title" 

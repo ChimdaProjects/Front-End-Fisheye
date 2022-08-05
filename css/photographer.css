@@ -139,10 +139,12 @@
     width: 150px;
     margin: 0 auto;
     padding: 0.5rem 0;
+    cursor: pointer;
 }
 
 #popularity, #date {
     border-bottom:1px solid #FFFFFF;
+    
 }
 #popularity {
     display: flex;
