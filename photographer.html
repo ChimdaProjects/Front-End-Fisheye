@@ -84,14 +84,14 @@
     </div>
     </main>
     <!--Modal Carousel-->
-    <div id="main-wrapper" aria-hidden="false">
+    <div id="main-wrapper" aria-hidden="false" onkeydown="handleKeyDown(event)" >
       <div class="wrapper-media">
-        <button id="leftBtn" aria-label="navigate to previous photo" onkeydown="handleKeyDown(e)" ><i class=" fa fa-solid fa-angle-left"></i></button>
+        <button id="leftBtn" aria-label="navigate to previous photo" tabindex="0" onkeydown="handleKeyDown(event)" ><i class=" fa fa-solid fa-angle-left"></i></button>
         <div id="content_modal">
           <ul class="carousel" aria-label="Our selection of my gallery">  
           </ul>
         </div>
-        <button id="rightBtn" aria-label="navigate to next photo" onkeydown="handleKeyDown(e)"> <i class=" fa fa-solid fa-angle-right"></i></button>
+        <button id="rightBtn" aria-label="navigate to next photo" onkeydown="handleKeyDown(event)" tabindex="0"> <i class=" fa fa-solid fa-angle-right"></i></button>
       </div>
     </div>
     <!--Modal form contact -->

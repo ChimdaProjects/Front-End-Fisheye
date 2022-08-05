@@ -4,10 +4,10 @@ function mediaFactory(dataMedia) {
     
 
     if(dataMedia.hasOwnProperty('image')) {
-        media = `<img src="assets/images/${image}" alt=${title} id=${id}  class="card-img">`;
+        media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
     } else if (dataMedia.hasOwnProperty('video')) {
         media = `
-        <video controls class="card-video" id=${id} >
+        <video controls class="card-video" id=${id} tabIndex="0" >
             <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
             Votre navigateur ne permet pas de lire les vidéos.
         </video> `
@@ -44,7 +44,7 @@ function mediaFactory(dataMedia) {
             cardMedia.setAttribute('id',`${id}`);
             cardMedia.innerHTML = `
                 
-                <button onclick="closeModalLb()"  id="close_modal_lb" tabindex="0"> X </button>
+                <button onclick="closeModalLb()" focus id="close_modal_lb" tabindex="0"> X </button>
                 <div id="container-media">
                 ${media}
                 <p id="lightbox-text"> ${title} </p>

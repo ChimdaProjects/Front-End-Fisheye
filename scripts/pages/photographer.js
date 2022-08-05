@@ -10,7 +10,7 @@ const btnLeft = document.querySelector('#leftBtn');
 const btnRight = document.querySelector('#rightBtn');
 btnLeft.addEventListener('click', displayPreviousMedia);
 btnRight.addEventListener('click', displayNextMedia);
-
+const containerModal = document.querySelector('#main-wrapper');
 
 /**
  * Cette fonction permet de récupérer l'id dans l'url courante
@@ -137,8 +137,8 @@ function displayPriceDaily (data) {
  * @param {Event} e element clicked
  */
 function openModalLightbox(e) {
-  const containerModal = document.querySelector('#main-wrapper');
-  const main = document.querySelector('#main');
+  
+  
   containerModal.style.display ="flex";
   imgSelectedId =parseInt( e.target.id);
   console.log('lb id',   imgSelectedId);
@@ -150,6 +150,7 @@ function openModalLightbox(e) {
   let mediaModel = mediaFactory(mediaSelected);
   mediaModel.getMediaCardLightbox();  
   main.style.display = 'none';
+  btnRight.focus()
   return mediaSelected;
 
 }
@@ -162,6 +163,7 @@ function closeModalLb() {
   containerModal.style.display ="none";
   const main = document.querySelector('#main');
   main.style.display = 'block';
+  location.reload();
 }
 let currentIndex; 
 let nextIndex;
@@ -234,9 +236,27 @@ function displayNextMedia () {
 
 }
 
-function handleKeyDownLeft(e) {
+function handleKeyDown(e) {
+  
+  console.log('keycode',e.keyCode);
+  if(e.keyCode === 37) {
+    return displayPreviousMedia();
+  }
+  if (e.keyCode === 39) {
+    return displayNextMedia();
+  }
+} 
 
+
+containerModal.addEventListener('keydown', handleKeyDownClose);
+
+function handleKeyDownClose(e) {
+  if ( e.keyCode === 27) {
+    closeModalLb();
+    location.reload();
 }
+}
+
 
 /**
 * Initialisation of the page photographer.html
