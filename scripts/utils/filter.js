@@ -36,7 +36,9 @@ function filterByDate (media) {
     mediasByDate = media.sort(function compare(a,b) {
         let dateA = new Date(a.date);
         let dateB = new Date(b.date);
-        return dateB - dateA;
+        a = dateA;
+        b = dateB;
+        return b - a;
     })
 
     console.log('media filtré par dat', mediasByDate);
