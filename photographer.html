@@ -21,11 +21,12 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div id="filter">
-          <div id="filter-label">Trier par :</div>
+          <div id="filter-label" >Trier par :</div>
             <div id="filter-container">
-                <button 
+                <button   
                   id="filterBtn" 
                   class="filter-btn" 
+                  tabindex="0"
                   aria-expended="false" 
                   aria-haspopup="listbox"
                   aria-labelledby="filter-label"
@@ -38,6 +39,7 @@
                   id="filter-list" 
                   class="filter-list" 
                   role="listbox" 
+                  tabindex="0"
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
@@ -45,6 +47,7 @@
                 >
                   <li 
                   onclick="filterByPopularity()"
+                  onkeydown="handleKeyDownEnterFilter(event)"
                     id="popularity" 
                     class="filter-list-item" 
                     data-value="popularity" 
@@ -55,6 +58,7 @@
                   </li>
                   <li 
                     onclick="filterByDate()"
+                    onkeydown="handleKeyDownEnterFilter(event)"
                     id="date" 
                     class="filter-list-item" 
                     data-value="date" 
@@ -63,7 +67,8 @@
                     Date
                   </li>
                   <li 
-                  onclick="filterByTitle()""
+                  onclick="filterByTitle()"
+                  onkeydown="handleKeyDownEnterFilter(event)"
                     id="title" 
                     class="filter-list-item" 
                     data-value="title" 
