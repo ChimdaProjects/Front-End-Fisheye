@@ -17,9 +17,11 @@
       </a>
     </header>
     <main id="main">
+      <!-- header photographer -->
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <!-- filter -->
       <div id="filter">
           <div id="filter-label" >Trier par :</div>
             <div id="filter-container">
@@ -43,7 +45,6 @@
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
-                  
                 >
                   <li 
                   onclick="filterByPopularity()"
@@ -64,7 +65,7 @@
                     data-value="date" 
                     tabindex="0" 
                     role="button">
-                    Date
+                      Date
                   </li>
                   <li 
                   onclick="filterByTitle()"
@@ -74,18 +75,21 @@
                     data-value="title" 
                     tabindex="0" 
                     role="button">
-                    Titre
+                      Titre
                   </li>
                 </ul>
           </div>
     </div>
+    <!-- Encart likes / daily rate -->
     <div class="photographer-gallery">
       <div class="photographer-likes-price">
         <div class="container-likes">        
           <div class="total-likes"></div>
-          <i  class="fa fa-solid fa-heart .likes" aria-label="likes"></i>
+          <i  
+            class="fa fa-solid fa-heart .likes" 
+            aria-label="likes">
+          </i>
         </div>
-
         <div class="daily-price"></div>
       </div>
     </div>
@@ -93,60 +97,137 @@
     </div>
     </main>
     <!--Modal Carousel-->
-    <div id="main-wrapper" aria-hidden="false" onkeydown="handleKeyDown(event)" >
+    <div 
+      id="main-wrapper" 
+      aria-hidden="false" 
+      onkeydown="handleKeyDown(event)" >
       <div class="wrapper-media">
-        <button id="leftBtn" aria-label="navigate to previous photo" tabindex="0" onkeydown="handleKeyDown(event)" ><i class=" fa fa-solid fa-angle-left"></i></button>
+        <button 
+          id="leftBtn" 
+          aria-label="navigate to previous photo" 
+          tabindex="0" 
+          onkeydown="handleKeyDown(event)" >
+            <i class=" fa fa-solid fa-angle-left"></i>
+        </button>
         <div id="content_modal">
-          <ul class="carousel" aria-label="Our selection of my gallery">  
+          <ul 
+            class="carousel" 
+            aria-label="Our selection of my gallery">  
           </ul>
         </div>
-        <button id="rightBtn" aria-label="navigate to next photo" onkeydown="handleKeyDown(event)" tabindex="0"> <i class=" fa fa-solid fa-angle-right"></i></button>
+        <button 
+          id="rightBtn" 
+          aria-label="navigate to next photo" 
+          onkeydown="handleKeyDown(event)" 
+          tabindex="0"> 
+            <i class=" fa fa-solid fa-angle-right"></i>
+        </button>
       </div>
     </div>
     <!--Modal form contact -->
-    <div id="contact_modal" role="dialog" aria-hidden="true" aria-describedby="modal-title" tabindex="0">
-			<div class="modal" tabindex="0">
+    <div 
+      id="contact_modal" 
+      role="dialog" aria-hidden="true" 
+      aria-describedby="modal-title" 
+      tabindex="0">
+			<div class="modal" 
+        tabindex="0">
 				<header>
           <h2 class="modal-title">
             Contactez-moi <br>
             <span class="modal-name"></span>
           </h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" class="close_modal" tabindex="0" />
+          <img 
+            src="assets/icons/close.svg" 
+            onclick="closeModal()" 
+            class="close_modal" 
+            tabindex="0" />
         </header>
-				<form id="formContact" class="form" method="get">
+				<form 
+          id="formContact" 
+          class="form" 
+          method="get">
         
 					<fieldset>
-            <div class="formData" class="divFirstName" autofocus= "autofocus" id="divFirst" data-error>
-              <label for="prenom">Prénom</label>
-              <input type="text" name="prenom" id="prenom" class="form-input text-control" autofocus aria-required=true aria-invalid=false tabindex="0"/>
+            <div 
+              class="formData" 
+              class="divFirstName" 
+              autofocus= "autofocus" 
+              id="divFirst" 
+              data-error>
+              <label for="prenom">
+                Prénom
+              </label>
+              <input 
+                type="text" 
+                name="prenom" 
+                id="prenom" 
+                class="form-input text-control" 
+                autofocus 
+                aria-required=true 
+                aria-invalid=false 
+                tabindex="0"/>
             </div>
-            <div class="formData" id="divLast" data-error>
-              <label for="nom">Nom</label>
-						<input type="text" name="nom" id="nom" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
+            <div 
+              class="formData" 
+              id="divLast" 
+              data-error>
+              <label for="nom">
+                Nom
+              </label>
+              <input 
+                type="text" 
+                name="nom" 
+                id="nom" 
+                class="form-input text-control" 
+                aria-required=true 
+                aria-invalid=false 
+                tabindex="0"/>  
             </div>
-            <div  class="formData" id="divMail" data-error>
-              <label for="email">Quel est votre e-mail ?</label>
-            <input type="email" name="email" id="addmail" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"/>
+            <div  
+              class="formData" 
+              id="divMail" 
+              data-error>
+              <label for="email">
+                Quel est votre e-mail ?
+              </label>
+            <input 
+              type="email" 
+              name="email" 
+              id="addmail" 
+              class="form-input text-control" 
+              aria-required=true 
+              aria-invalid=false 
+              tabindex="0"/>
             </div>
-            <div  class="formData" id="divMessage" data-error>
-              <label for="message">Votre message</label>
-            <input type="text" id="message" name="message" class="form-input text-control" aria-required=true aria-invalid=false tabindex="0"
-            size="150">
+            <div  
+              class="formData" 
+              id="divMessage" data-error>
+              <label for="message">
+                Votre message
+              </label>
+              <input 
+                type="text" 
+                id="message" 
+                name="message" 
+                class="form-input text-control" 
+                aria-required=true 
+                aria-invalid=false 
+                tabindex="0"
+                size="150">
             </div>
-            
           </fieldset>
-          <button type="submit" class="contact_button">Envoyer</button>
+          <button 
+          type="submit" 
+          class="contact_button">
+            Envoyer
+          </button>
 				</form>
 			</div>
 		</div>
 
-   
-    
-        
-      
-      <div class="cards-section">
-
-      </div>
+    <div class="cards-section">
+    </div>
   
     <script src="scripts/factories/Photographer.js"></script>
     <script src="scripts/factories/media.js"></script>

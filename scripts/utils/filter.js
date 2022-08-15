@@ -3,15 +3,15 @@ let mediasByPopularity;
 let mediasByDate;
 let mediasByTitle;
 const gallerySection = document.querySelector(".photographer-gallery");
-const filterBtn = document.querySelector('#filterBtn');
+const filterBtn = document.querySelector("#filterBtn");
 
 /**
  * this function displays medias by filter :popularity 
  */
 function filterByPopularity() {
     let media = mediaDatas;
-    console.log('media', media);
-    console.log('filter popu');
+    console.log("media", media);
+    console.log("filter popu");
     mediasByPopularity = media.sort(function compare(a,b) {
         if(a.likes > b.likes) {
             return -1;
@@ -21,13 +21,14 @@ function filterByPopularity() {
         }
         return 0;
     });
-    console.log('media filtré par popu', mediasByPopularity);
+    console.log("media filtré par popu", mediasByPopularity);
     
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByPopularity);
     closeFilterMenu();
-    filterBtn.innerHTML = 'Popularité';
+    // eslint-disable-next-line
+    filterBtn.innerHTML = `Popularité <i class="fa-solid fa-chevron-down"></i>`;
     mediaDatas = mediasByPopularity;
     
     
@@ -40,19 +41,18 @@ function filterByDate () {
     let media = mediaDatas;
     // order by older to newer 
     mediasByDate = media.sort(function compare(a,b) {
-        let dateA = new Date(a.date);
-        let dateB = new Date(b.date);
-        a = dateA;
-        b = dateB;
+        a = new Date(a.date);
+        b = new Date(b.date);
         return b - a;
     })
 
-    console.log('media filtré par dat', mediasByDate);
+    console.log("media filtré par dat", mediasByDate);
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByDate);
     closeFilterMenu();
-    filterBtn.innerHTML = 'Date';
+    // eslint-disable-next-line
+    filterBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
     mediaDatas = mediasByDate;
 }
 
@@ -64,11 +64,9 @@ function filterByTitle () {
     let media = mediaDatas;
    
     mediasByTitle = media.sort(function compare(a,b) {
-        let titleA = a.title.toLowerCase();
-        let titleB = b.title.toLowerCase();
-        a = titleA;
-        b = titleB;
-   
+        a = a.title.toLowerCase();
+        b = b.title.toLowerCase();
+
         if ( a < b ) {
             return -1;
         }
@@ -77,12 +75,13 @@ function filterByTitle () {
         }
         return 0;
     });
-    console.log('media filtré par titre', mediasByTitle);
+    console.log("media filtré par titre", mediasByTitle);
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByTitle);
     closeFilterMenu();
-    filterBtn.innerHTML = 'Titre';                  
+    // eslint-disable-next-line
+    filterBtn.innerHTML = `Titre <i class="fa-solid fa-chevron-down"></i>`;                  
     mediaDatas = mediasByTitle;
 }
 /**
@@ -91,25 +90,40 @@ function filterByTitle () {
  * @returns 
  */
 function handleKeyDownEnterFilter (event) {
-    console.log('enter filter')
+    console.log("enter filter")
     let value = event.target.id;
-    console.log('value', value);
+    console.log("value", value);
 
     if (event.keyCode === 13) {
         switch(value) {
-            case 'popularity' :
+            case "popularity" :
                 return filterByPopularity();  
                 
-            case 'date':
-                return filterByDate();;
+            case "date":
+                return filterByDate();
 
-            case 'title':
-                return filterByTitle();;
+            case "title":
+                return filterByTitle();
 
-            default:console.log('il y a eu un pepin !', console.error());
+            default:console.log("il y a eu un pepin !", console.error());
         }
     }
+
+
+    
     
 }
+// event avec keydown pour monter et descendre avec les flèches dans le menu
+// utiliser document.activeElement
+function handleKeyDownSelect (event) {
+    let value = event.target.id ;
+    if (document.activeElement){}
+}
 
-
+/**
+ * TODO: 
+ * - finir le css : reprendre figma pour les couleurs 
+ * - rajouter les aria ou autres attributs manquants
+ * - verifier l'accessibilité au clavier
+ * - faire le rapport d'accessibilité
+ */

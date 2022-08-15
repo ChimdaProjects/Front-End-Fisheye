@@ -114,7 +114,10 @@
 }
 
 #filter-label {
+    display: flex;
+    align-items: center;
     font-weight: 700;
+    height: 70px;
     font-size: 18px;
     line-height: 23px;
     margin-right: 1rem;
@@ -133,13 +136,18 @@
     color: #FFFFFF;
     position: relative;
     display: none;
+    margin:0;
 
 }
 #filter li {
+    display: flex;
+    align-items: center;
     width: 150px;
+    height: 70px;
     margin: 0 auto;
-    padding: 0.5rem 0;
+    padding: 0 0.5rem;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 #popularity, #date {
@@ -154,15 +162,23 @@
 .filter-btn {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 5px;
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
-    background: #FFFFFF;
     cursor: pointer;
     width: 170px;
-    text-align: justify;
+    background-color: #901C1C;
+    color: white;
+    border: none;
+    height: 69px;
+    padding: 0 1rem;
     
+}
+
+.fa-chevron-down {
+    color:white;
 }
 
 .active {
@@ -175,7 +191,6 @@
 /* card gallery */
 
 .photographer-gallery {
-    
     margin: auto 100px;
     display: flex;
     flex-wrap: wrap;
@@ -186,8 +201,7 @@
 
 .card-container {
     width: 350px;
-    height: 400px;
-    
+    height: 400px; 
 }
 
 .card-container:hover {
@@ -400,3 +414,15 @@ li:nth-child(1){
     justify-content: center;
     display: none;
 }
+
+/* focus & hover*/
+.contact_button:hover, .contact_button:focus,
+.filter-btn:hover, .filter-btn:focus,
+.fa-chevron-down:hover, .fa-chevron-down:focus,
+/*ul:hover, ul:focus,*/
+li:hover, li:focus
+
+{
+    background-color: #D3573C;
+    color: black;
+}                           
