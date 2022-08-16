@@ -7,11 +7,12 @@ function mediaFactory(dataMedia) {
     let key = "image";
     let key2 = "video";
 
-    if(dataMedia.hasOwnProperty.call(event, key)) {
+    //if(dataMedia.hasOwnProperty.call(event, key)) 
+    if ( dataMedia.hasOwnProperty("image") ){
         media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
-    } else if (dataMedia.hasOwnProperty.call(event2, key2)) {
+    } else if ( dataMedia.hasOwnProperty("video") ) {
         media = `
-        <video controls class="card-video" id=${id} tabIndex="0" >
+        <video class="card-video" id=${id} tabIndex="0" >
             <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
             Votre navigateur ne permet pas de lire les vidéos.
         </video> `
@@ -57,7 +58,9 @@ function mediaFactory(dataMedia) {
                 </div>
                
                 `;
-            
+        while (containerModal.firstChild) {
+            containerModal.removeChild(containerModal.firstChild);
+        }   
         containerModal.appendChild(cardMedia);   
 
         return (cardMedia);

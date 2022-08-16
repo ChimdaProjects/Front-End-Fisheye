@@ -1,7 +1,9 @@
-// trier par popularité
+// Déclaration variables
 let mediasByPopularity;
 let mediasByDate;
 let mediasByTitle;
+
+//DOM elements
 const gallerySection = document.querySelector(".photographer-gallery");
 const filterBtn = document.querySelector("#filterBtn");
 
@@ -28,7 +30,7 @@ function filterByPopularity() {
     displayGalleryPhotographer(mediasByPopularity);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = `Popularité <i class="fa-solid fa-chevron-down"></i>`;
+    filterBtn.innerHTML = 'Popularité <i class="fa-solid fa-chevron-down"></i>';
     mediaDatas = mediasByPopularity;
     
     
@@ -52,7 +54,7 @@ function filterByDate () {
     displayGalleryPhotographer(mediasByDate);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = `<i class="fa-solid fa-chevron-down"></i>`;
+    filterBtn.innerHTML = 'Date <i class="fa-solid fa-chevron-down"></i>';
     mediaDatas = mediasByDate;
 }
 
@@ -81,7 +83,7 @@ function filterByTitle () {
     displayGalleryPhotographer(mediasByTitle);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = `Titre <i class="fa-solid fa-chevron-down"></i>`;                  
+    filterBtn.innerHTML = 'Titre <i class="fa-solid fa-chevron-down"></i>';                  
     mediaDatas = mediasByTitle;
 }
 /**
@@ -115,15 +117,8 @@ function handleKeyDownEnterFilter (event) {
 }
 // event avec keydown pour monter et descendre avec les flèches dans le menu
 // utiliser document.activeElement
-function handleKeyDownSelect (event) {
-    let value = event.target.id ;
-    if (document.activeElement){}
-}
+//function handleKeyDownSelect (event) {
+//    let value = event.target.id ;
+//    if (document.activeElement){}
+//}
 
-/**
- * TODO: 
- * - finir le css : reprendre figma pour les couleurs 
- * - rajouter les aria ou autres attributs manquants
- * - verifier l'accessibilité au clavier
- * - faire le rapport d'accessibilité
- */

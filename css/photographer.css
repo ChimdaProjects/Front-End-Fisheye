@@ -240,7 +240,7 @@
 }
 
 .card-likes:hover , i:hover {
-    color:blue
+    color:#DB8876;
 }
 /* encart statique infos*/
 .photographer-likes-price {
@@ -418,11 +418,14 @@ li:nth-child(1){
 /* focus & hover*/
 .contact_button:hover, .contact_button:focus,
 .filter-btn:hover, .filter-btn:focus,
-.fa-chevron-down:hover, .fa-chevron-down:focus,
-/*ul:hover, ul:focus,*/
-li:hover, li:focus
+.fa-chevron-down:hover, .fa-chevron-down:focus
 
 {
     background-color: #D3573C;
     color: black;
 }                           
+
+li:hover, li:focus {
+    color : #D3573C;
+    transform: scale(1.1);
+}

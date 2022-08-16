@@ -166,7 +166,7 @@ function closeModalLb() {
     containerModal.style.display ="none";
     
     main.style.display =  "block" ;
-    location.reload();
+    //location.reload();
 }
 
 

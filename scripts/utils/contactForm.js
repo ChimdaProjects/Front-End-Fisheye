@@ -83,7 +83,7 @@ function checkContactForm(e) {
             }
             break;
 
-        case "addmail":
+        case "email":
             if (value.length > 0  && regexEmail.test(value)) {
                 checkEmail = true;
                 valueFields.email = value;
