@@ -25,6 +25,7 @@ function mediaFactory(dataMedia) {
     function getMediaCardDOM() {
         const card = document.createElement("div");
         card.setAttribute("class", "card-container");
+        
         card.innerHTML= 
             `
             <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeydown="handleKeyDownMedia(event, ${id})">
@@ -49,6 +50,19 @@ function mediaFactory(dataMedia) {
         const cardMedia = document.createElement("li");
         cardMedia.setAttribute("class","img-container");
         cardMedia.setAttribute("id",`${id}`);
+
+        if ( dataMedia.hasOwnProperty("image") ){
+            media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
+        } else if ( dataMedia.hasOwnProperty("video") ) {
+            media = `
+            <video class="card-video" id=${id} tabIndex="0" controls >
+                <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
+                Votre navigateur ne permet pas de lire les vidéos.
+            </video> `
+        }
+
+
+
         cardMedia.innerHTML = `
                 
                 <button onclick="closeModalLb()" focus id="close_modal_lb" tabindex="0"> X </button>
@@ -58,9 +72,9 @@ function mediaFactory(dataMedia) {
                 </div>
                
                 `;
-        while (containerModal.firstChild) {
-            containerModal.removeChild(containerModal.firstChild);
-        }   
+        //while (containerModal.firstChild) {
+        //    containerModal.removeChild(containerModal.firstChild);
+        //}   
         containerModal.appendChild(cardMedia);   
 
         return (cardMedia);

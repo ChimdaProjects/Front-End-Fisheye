@@ -7,6 +7,7 @@ let imgSelectedId;
 let idPhotographer;
 let photographerDatas;
 let mediaDatas;
+let mediaSelected
 let currentIndex; 
 let nextIndex;
 let previousIndex;
@@ -149,11 +150,15 @@ function openModalLightbox( mediaIdSelected ) {
     btnRight.style.display="flex";
     let mediaSelected = mediaDatas.find(elt => elt.id == mediaIdSelected);
     console.log( "media selected" , mediaSelected);
-    
+    imgSelectedId = mediaIdSelected;
+    console.log('imgSelectedId openlb', imgSelectedId);
+    currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
+    console.log("current index -open lb",(currentIndex));
     let mediaModel = mediaFactory(mediaSelected);
     mediaModel.getMediaCardLightbox();  
     main.style.display =  "none" ;
-    btnRight.focus()
+    
+    btnRight.focus();
     return mediaSelected;
 
 }
@@ -212,20 +217,21 @@ function displayNextMedia () {
     let liMedia = document.querySelector(".img-container");
     liMedia.remove();
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
+    console.log('imgSelectedId', imgSelectedId);
     console.log("current index",(currentIndex));
-
     nextIndex = currentIndex + 1;
     console.log("next", (nextIndex));
     // si l'index suivant est égal ou inférieur à la taille du tableau media
-    if (nextIndex <= mediaDatas.length-1) {
+    if (nextIndex > 0 && nextIndex <= mediaDatas.length-1) {
         slideNext = mediaDatas[nextIndex];
         console.log("next", slideNext);
         let mediaModel = mediaFactory(slideNext);
         mediaModel.getMediaCardLightbox();  
         imgSelectedId = mediaDatas[nextIndex].id;
-    } else {
-        currentIndex = -1;
-        nextIndex = currentIndex + 1;
+        console.log('__________');
+    } else if (nextIndex > mediaDatas.length-1) {
+        console.log('on entre ds nextIndex == mediaDatas.length-1')
+        nextIndex = 0;
         slideNext = mediaDatas[nextIndex];
         let mediaModel = mediaFactory(slideNext);
         mediaModel.getMediaCardLightbox();  
