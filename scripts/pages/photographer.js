@@ -16,8 +16,8 @@ let slideNext;
 
 const btnLeft = document.querySelector( "#leftBtn" );
 const btnRight = document.querySelector( "#rightBtn" );
-btnLeft.addEventListener( "click" , displayPreviousMedia);
-btnRight.addEventListener( "click" , displayNextMedia);
+//btnLeft.addEventListener( "click" , displayPreviousMedia);
+//btnRight.addEventListener( "click" , displayNextMedia);
 const containerModal = document.querySelector( "#main-wrapper" );
 const main = document.querySelector("#main");
 
@@ -169,8 +169,9 @@ function openModalLightbox( mediaIdSelected ) {
 function closeModalLb() {
     const containerModal = document.querySelector( "#main-wrapper" );
     containerModal.style.display ="none";
-    
     main.style.display =  "block" ;
+    let caroussel = document.querySelector(".carousel");
+    caroussel.innerHTML="";
     //location.reload();
 }
 
@@ -273,7 +274,7 @@ function handleKeyDown(e) {
 } 
 
 // close modal with the user presses escape touch
-containerModal.addEventListener("keydown", handleKeyDownClose);
+//containerModal.addEventListener("keydown", handleKeyDownClose);
 
 function handleKeyDownClose(e) {
     if ( e.keyCode === 27) {

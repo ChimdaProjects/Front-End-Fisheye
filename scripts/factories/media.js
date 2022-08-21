@@ -73,11 +73,10 @@ function mediaFactory(dataMedia) {
                
                 `;
 
-        /*if (containerModal.firstChild) {
-           containerModal.removeChild;
-        } */  
+        
         containerModal.appendChild(cardMedia);   
-        console.log('container modal', containerModal);
+       
+        console.log('container modal2', containerModal);
         return (cardMedia);
                                                                                                                                                                             
     }

@@ -100,12 +100,13 @@
     <div 
       id="main-wrapper" 
       aria-hidden="false" 
-      onkeydown="handleKeyDown(event)" >
+      onkeydown="handleKeyDownClose(event)" >
       <div class="wrapper-media">
         <button 
           id="leftBtn" 
           aria-label="navigate to previous photo" 
           tabindex="0" 
+          onclick="displayPreviousMedia"
           onkeydown="handleKeyDown(event)" >
             <i class=" fa fa-solid fa-angle-left"></i>
         </button>
@@ -118,6 +119,7 @@
         <button 
           id="rightBtn" 
           aria-label="navigate to next photo" 
+          onclick="displayNextMedia"
           onkeydown="handleKeyDown(event)" 
           tabindex="0"> 
             <i class=" fa fa-solid fa-angle-right"></i>
