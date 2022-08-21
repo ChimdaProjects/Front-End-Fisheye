@@ -92,10 +92,11 @@ function filterByTitle () {
  * @returns 
  */
 function handleKeyDownEnterFilter (event) {
-    console.log("enter filter")
-    let value = event.target.id;
+    console.log("enter filter");
+    let value= event.target.id;
+    let elementFocus = document.activeElement;
     console.log("value", value);
-
+    console.log("elt focus", elementFocus);
     if (event.keyCode === 13) {
         switch(value) {
             case "popularity" :
@@ -109,16 +110,7 @@ function handleKeyDownEnterFilter (event) {
 
             default:console.log("il y a eu un pepin !", console.error());
         }
-    }
-
-
-    
+    }  
     
 }
-// event avec keydown pour monter et descendre avec les flèches dans le menu
-// utiliser document.activeElement
-//function handleKeyDownSelect (event) {
-//    let value = event.target.id ;
-//    if (document.activeElement){}
-//}
 

@@ -264,11 +264,11 @@ function handleKeyDown(e) {
     console.log("keycode",e.key);
     // press the left arrow
     if(e.keyCode === 37) {
-        return displayPreviousMedia();
+        displayPreviousMedia();
     }
     // press the right arrow
     if (e.keyCode === 39) {
-        return displayNextMedia();
+        displayNextMedia();
     }
 } 
 
@@ -285,6 +285,8 @@ function handleKeyDownClose(e) {
 function handleKeyDownMedia(event, id) {
     if (event.keyCode === 13 ) {
         console.log("press like");
+        console.log('id handlekdmedia', id);
+        console.log('element focus : ', document.activeElement);
         return openModalLightbox(id);
     }
 }

@@ -65,18 +65,19 @@ function mediaFactory(dataMedia) {
 
         cardMedia.innerHTML = `
                 
-                <button onclick="closeModalLb()" focus id="close_modal_lb" tabindex="0"> X </button>
+                <button onclick="closeModalLb()" id="close_modal_lb" tabindex="0"> X </button>
                 <div id="container-media">
                 ${media}
                 <p id="lightbox-text"> ${title} </p>
                 </div>
                
                 `;
-        //while (containerModal.firstChild) {
-        //    containerModal.removeChild(containerModal.firstChild);
-        //}   
-        containerModal.appendChild(cardMedia);   
 
+        /*if (containerModal.firstChild) {
+           containerModal.removeChild;
+        } */  
+        containerModal.appendChild(cardMedia);   
+        console.log('container modal', containerModal);
         return (cardMedia);
                                                                                                                                                                             
     }
