@@ -151,7 +151,7 @@ function openModalLightbox( mediaIdSelected ) {
     let mediaSelected = mediaDatas.find(elt => elt.id == mediaIdSelected);
     console.log( "media selected" , mediaSelected);
     imgSelectedId = mediaIdSelected;
-    console.log('imgSelectedId openlb', imgSelectedId);
+    console.log("imgSelectedId openlb", imgSelectedId);
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
     console.log("current index -open lb",(currentIndex));
     let mediaModel = mediaFactory(mediaSelected);
@@ -172,7 +172,6 @@ function closeModalLb() {
     main.style.display =  "block" ;
     let caroussel = document.querySelector(".carousel");
     caroussel.innerHTML="";
-    //location.reload();
 }
 
 
@@ -218,7 +217,7 @@ function displayNextMedia () {
     let liMedia = document.querySelector(".img-container");
     liMedia.remove();
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
-    console.log('imgSelectedId', imgSelectedId);
+    console.log("imgSelectedId", imgSelectedId);
     console.log("current index",(currentIndex));
     nextIndex = currentIndex + 1;
     console.log("next", (nextIndex));
@@ -229,9 +228,8 @@ function displayNextMedia () {
         let mediaModel = mediaFactory(slideNext);
         mediaModel.getMediaCardLightbox();  
         imgSelectedId = mediaDatas[nextIndex].id;
-        console.log('__________');
+        
     } else if (nextIndex > mediaDatas.length-1) {
-        console.log('on entre ds nextIndex == mediaDatas.length-1')
         nextIndex = 0;
         slideNext = mediaDatas[nextIndex];
         let mediaModel = mediaFactory(slideNext);
@@ -286,8 +284,8 @@ function handleKeyDownClose(e) {
 function handleKeyDownMedia(event, id) {
     if (event.keyCode === 13 ) {
         console.log("press like");
-        console.log('id handlekdmedia', id);
-        console.log('element focus : ', document.activeElement);
+        console.log("id handlekdmedia", id);
+        console.log("element focus " , document.activeElement);
         return openModalLightbox(id);
     }
 }

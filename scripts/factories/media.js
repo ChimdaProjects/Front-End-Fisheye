@@ -8,9 +8,9 @@ function mediaFactory(dataMedia) {
     let key2 = "video";
 
     //if(dataMedia.hasOwnProperty.call(event, key)) 
-    if ( dataMedia.hasOwnProperty("image") ){
+    if ( Object.hasOwnProperty.call(dataMedia, "image") ){
         media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
-    } else if ( dataMedia.hasOwnProperty("video") ) {
+    } else if ( Object.hasOwnProperty.call(dataMedia, "video") ) {
         media = `
         <video class="card-video" id=${id} tabIndex="0" >
             <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
@@ -51,9 +51,9 @@ function mediaFactory(dataMedia) {
         cardMedia.setAttribute("class","img-container");
         cardMedia.setAttribute("id",`${id}`);
 
-        if ( dataMedia.hasOwnProperty("image") ){
+        if ( Object.hasOwnProperty.call(dataMedia, "image") ){
             media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
-        } else if ( dataMedia.hasOwnProperty("video") ) {
+        } else if ( Object.hasOwnProperty.call(dataMedia, "video") ) {
             media = `
             <video class="card-video" id=${id} tabIndex="0" controls >
                 <source src="assets/images/${video}" alt=${title}  type="video/mp4" >
@@ -76,7 +76,7 @@ function mediaFactory(dataMedia) {
         
         containerModal.appendChild(cardMedia);   
        
-        console.log('container modal2', containerModal);
+        console.log("container modal2", containerModal);
         return (cardMedia);
                                                                                                                                                                             
     }
