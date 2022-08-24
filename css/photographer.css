@@ -316,7 +316,6 @@ form button {
 .formData[data-error]::after {
     content: attr(data-error);
     font-size: 1.2em;
-    color: red;
     display: block;
     margin-top: 7px;
     text-align: right;
@@ -330,13 +329,13 @@ form button {
   }
 
   .formData[data-error-visible="true"] .text-control {
-    border: 2px solid red;
+    border: 4px solid red;
   }
   
   input[data-error]::after {
       content: attr(data-error);
       font-size: 1.5em;
-      color: red;
+      color: #901C1C;
   } 
 
 /*LIGHTBOX */
@@ -427,4 +426,14 @@ li:nth-child(1){
 li:hover, li:focus {
     color : #D3573C;
     /*transform: scale(1.1);*/
+}
+
+.card-video:focus, .card-img:focus, 
+.card-title:focus, .card-likes:focus {   
+    transform: scale(1.1);
+    outline: 5px solid #D3573C;
+}
+
+.form-input:focus {
+    outline: 3px solid black;
 }

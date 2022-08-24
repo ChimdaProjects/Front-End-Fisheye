@@ -86,6 +86,8 @@ function filterByTitle () {
     filterBtn.innerHTML = 'Titre <i class="fa-solid fa-chevron-down"></i>';                  
     mediaDatas = mediasByTitle;
 }
+
+
 /**
  * This function displays medias with filter choosen
  * @param {Event} event 
@@ -97,6 +99,7 @@ function handleKeyDownEnterFilter (event) {
     let elementFocus = document.activeElement;
     console.log("value", value);
     console.log("elt focus", elementFocus);
+    let liElt = document.querySelector(".filter-list-item");
     if (event.keyCode === 13) {
         switch(value) {
             case "popularity" :
@@ -107,10 +110,14 @@ function handleKeyDownEnterFilter (event) {
 
             case "title":
                 return filterByTitle();
-
+              
             default:console.log("il y a eu un pepin !", console.error());
         }
-    }  
+    } 
     
 }
+
+
+
+
 

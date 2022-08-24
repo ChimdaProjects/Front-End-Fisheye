@@ -35,7 +35,7 @@
                   onclick="displayFilterMenu()"
                   >
                     Popularité 
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <em class="fa-solid fa-chevron-down"></em>
                 </button>
                 <ul 
                   id="filter-list" 
@@ -45,6 +45,7 @@
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
+                  
                 >
                   <li 
                   onclick="filterByPopularity()"
@@ -69,6 +70,7 @@
                   </li>
                   <li 
                   onclick="filterByTitle()"
+                  onfocusout="closeFilterMenu()"
                   onkeyup="handleKeyDownEnterFilter(event)"
                     id="title" 
                     class="filter-list-item" 
@@ -106,7 +108,7 @@
           id="leftBtn" 
           aria-label="navigate to previous photo" 
           tabindex="0" 
-          onclick="displayPreviousMedia"
+          onclick="displayPreviousMedia()"
           onkeydown="handleKeyDown(event)" >
             <i class=" fa fa-solid fa-angle-left"></i>
         </button>
@@ -119,7 +121,7 @@
         <button 
           id="rightBtn" 
           aria-label="navigate to next photo" 
-          onclick="displayNextMedia"
+          onclick="displayNextMedia()"
           onkeydown="handleKeyDown(event)" 
           tabindex="0"> 
             <i class=" fa fa-solid fa-angle-right"></i>

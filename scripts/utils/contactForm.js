@@ -57,7 +57,6 @@ function checkContactForm(e) {
             if (value.length > 1 && regexName.test(value)) {
                 checkFirstName=true;
                 valueFields.prenom = value;
-                console.log("prenom",value);
                 divFirst.setAttribute("data-error-visible", "false");
             } else {
                 
@@ -72,7 +71,6 @@ function checkContactForm(e) {
             if (value.length >= 1 && regexName.test(value)) {
                 checkName=true;
                 valueFields.nom = value;
-                console.log("nom", value);
                 divName.setAttribute("data-error-visible", "false");
               
             } else {
@@ -87,7 +85,6 @@ function checkContactForm(e) {
             if (value.length > 0  && regexEmail.test(value)) {
                 checkEmail = true;
                 valueFields.email = value;
-                console.log("email",value);
                 divEmail.setAttribute("data-error-visible", "false");
                 
             } else {
@@ -99,10 +96,9 @@ function checkContactForm(e) {
             break;
 
         case "message":
-            if (value.length > 1) {
+            if (value.length > 0) {
                 checkMessage=true;
                 valueFields.message = value;
-                console.log("msg",value);
                 divMsg.setAttribute("data-error-visible", "false");
             } else {
                 checkMessage=false;
@@ -120,9 +116,12 @@ function clearDatas () {
     lastname.value="";
     mail.value="";
     msg.value="";
+    divFirst.setAttribute("data-error-visible", "false");
+    divName.setAttribute("data-error-visible", "false");
+    divEmail.setAttribute("data-error-visible", "false");
+    divMsg.setAttribute("data-error-visible", "false");
 }
 
-console.log("valueFields", valueFields);
 function submitForm(e) {
     e.preventDefault();
     if (
@@ -134,8 +133,13 @@ function submitForm(e) {
         console.log("valeurs envoyées: ",valueFields );
         // on appelle cette fonction pour fermer la modale à la soumission
         closeModal();
-        alert(`votre message a bien été envoyé ! Les champs remplis :
-        Prénom: ${valueFields.prenom}, Nom: ${valueFields.nom}, Email: ${valueFields.email}, Message: ${valueFields.message}`);
+        alert(
+        `Votre message a bien été envoyé à ${photographerDatas.name}.
+        Récapitulatif :
+            Prénom: ${valueFields.prenom},
+            Nom: ${valueFields.nom}, 
+            Email: ${valueFields.email}, 
+            Message: ${valueFields.message}`);
         clearDatas();
     } else {
         if(!checkFirstName) { // vérification du prénom
@@ -188,6 +192,7 @@ function escapeModal(e){
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
-   
+    clearDatas();  
 }
+
 
