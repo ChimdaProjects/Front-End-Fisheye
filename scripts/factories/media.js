@@ -2,12 +2,6 @@ function mediaFactory(dataMedia) {
     const { id, photographerId, title, image, video, likes, date, price } = dataMedia;
     let media="";
 
-    let event = {"image" : false };
-    let event2 = {"video" : false};
-    let key = "image";
-    let key2 = "video";
-
-    //if(dataMedia.hasOwnProperty.call(event, key)) 
     if ( Object.hasOwnProperty.call(dataMedia, "image") ){
         media = `<img src="assets/images/${image}" alt=${title} id=${id} tabIndex="0" class="card-img">`;
     } else if ( Object.hasOwnProperty.call(dataMedia, "video") ) {
@@ -21,7 +15,11 @@ function mediaFactory(dataMedia) {
     const gallerySection = document.querySelector(".photographer-gallery");
     const likesContainer = document.getElementById(`likes-${id}`);
     const cardInfos = document.getElementById(`cardInfos-${id}`);
-
+    
+    /**
+     * This function displays the card of each media
+     * @returns 
+     */
     function getMediaCardDOM() {
         const card = document.createElement("div");
         card.setAttribute("class", "card-container");
@@ -37,14 +35,17 @@ function mediaFactory(dataMedia) {
             </p>
             <p class="card-likes" data-value=${likes}  data-id=${id} id="likes-${id}" onclick="addLikes(${id})" onkeydown=" handleKeyDownEnterLikes(event, ${id})" tabIndex="0">
                 ${likes}
-                <i  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></i>
+                <em  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></em>
             </p>
             `
         gallerySection.appendChild(card);
        
         return (card);
     }
-
+    /**
+     * This function displays the medias of the lightbox
+     * @returns 
+     */
     function getMediaCardLightbox() {
         const containerModal = document.querySelector(".carousel");
         const cardMedia = document.createElement("li");
@@ -61,8 +62,6 @@ function mediaFactory(dataMedia) {
             </video> `
         }
 
-
-
         cardMedia.innerHTML = `
                 
                 <button onclick="closeModalLb()" id="close_modal_lb" tabindex="0"> X </button>
@@ -73,14 +72,15 @@ function mediaFactory(dataMedia) {
                
                 `;
 
-        
         containerModal.appendChild(cardMedia);   
-       
-        console.log("container modal2", containerModal);
+
         return (cardMedia);
                                                                                                                                                                             
     }
-    
+    /**
+     * This function update the number of likes when the user clicked on the heart
+     * @returns 
+     */
     function addOneLike () {
         let addLike = likes + 1;
         console.log("likescontainer", likesContainer);
@@ -92,11 +92,9 @@ function mediaFactory(dataMedia) {
             </p>
             <p class="card-likes" data-value=${addLike}  data-id=${id} id="likes-${id}"  tabIndex="0">
                 ${addLike}
-                <i  class="fa fa-solid fa-heart" aria-label="likes"></i>
+                <em  class="fa fa-solid fa-heart" aria-label="likes"></em>
             </p>  
         `
-        console.log("likescontainer", likesContainer);
-
         return (likesContainer)
     }
     return { media, getMediaCardDOM, getMediaCardLightbox, addOneLike}

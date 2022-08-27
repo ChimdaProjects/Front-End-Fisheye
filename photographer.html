@@ -45,7 +45,7 @@
                   aria-activedescendant="popularity"
                   aria-selected="true" 
                   aria-labelledby="filter-label"
-                  
+
                 >
                   <li 
                   onclick="filterByPopularity()"
@@ -56,7 +56,7 @@
                     tabindex="0"
                     role="button">
                       Popularité 
-                      <i class="fa-solid fa-chevron-up"  onclick="closeFilterMenu()"></i>
+                      <em class="fa-solid fa-chevron-up"  onclick="closeFilterMenu()"></em>
                   </li>
                   <li 
                     onclick="filterByDate()"
@@ -87,10 +87,10 @@
       <div class="photographer-likes-price">
         <div class="container-likes">        
           <div class="total-likes"></div>
-          <i  
+          <em  
             class="fa fa-solid fa-heart .likes" 
             aria-label="likes">
-          </i>
+        </em>
         </div>
         <div class="daily-price"></div>
       </div>
@@ -110,7 +110,7 @@
           tabindex="0" 
           onclick="displayPreviousMedia()"
           onkeydown="handleKeyDown(event)" >
-            <i class=" fa fa-solid fa-angle-left"></i>
+            <em class=" fa fa-solid fa-angle-left"></em>
         </button>
         <div id="content_modal">
           <ul 
@@ -124,7 +124,7 @@
           onclick="displayNextMedia()"
           onkeydown="handleKeyDown(event)" 
           tabindex="0"> 
-            <i class=" fa fa-solid fa-angle-right"></i>
+            <em class=" fa fa-solid fa-angle-right"></em>
         </button>
       </div>
     </div>

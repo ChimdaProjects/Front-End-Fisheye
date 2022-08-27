@@ -1,6 +1,4 @@
-//Mettre le code JavaScript lié à la page photographer.html
 // Initialisation des variables
-
 
 let data;
 let imgSelectedId;
@@ -16,8 +14,6 @@ let slideNext;
 
 const btnLeft = document.querySelector( "#leftBtn" );
 const btnRight = document.querySelector( "#rightBtn" );
-//btnLeft.addEventListener( "click" , displayPreviousMedia);
-//btnRight.addEventListener( "click" , displayNextMedia);
 const containerModal = document.querySelector( "#main-wrapper" );
 const main = document.querySelector("#main");
 
@@ -27,10 +23,8 @@ const main = document.querySelector("#main");
  */
 function getIdFromParams() {
     var url = document.location.href;
-    console.log( "url courante : " , url);
     const params = (new URL(url)).searchParams;
     idPhotographer = parseInt(params.get( "id" ));
-    console.log( "id :" , idPhotographer);
 
     return idPhotographer;
 }
@@ -45,15 +39,12 @@ async function getPhotographersData(idPhotographer) {
     try {
         const response = await fetch("./data/photographers.json");
         data = await response.json();
-        console.log( "data fetch : " , data);
 
         // on cherche les datas du photographe correspondant à l id de l url
         photographerDatas = data.photographers.find(elt => elt.id == idPhotographer);
-        console.log( "photographer datas :" , photographerDatas);
 
         // on cherche les medias correspondant au photographe recherché
         mediaDatas = data.media.filter(elt => elt.photographerId == idPhotographer)
-        console.log( "media filtré" , mediaDatas);
 
         return {photographerDatas, mediaDatas};
    
@@ -123,7 +114,7 @@ function counterLikes() {
         totalLikes += valueLike;
     }
 
-    containerLikes.textContent=totalLikes;
+    containerLikes.innerHTML=`${totalLikes}`;
     return totalLikes;
 }
 /**
@@ -145,20 +136,16 @@ function displayPriceDaily ( data ) {
  */
 function openModalLightbox( mediaIdSelected ) {
     containerModal.style.display ="flex";
-    console.log( "open" );
     btnLeft.style.display ="flex";
     btnRight.style.display="flex";
     let mediaSelected = mediaDatas.find(elt => elt.id == mediaIdSelected);
-    console.log( "media selected" , mediaSelected);
     imgSelectedId = mediaIdSelected;
-    console.log("imgSelectedId openlb", imgSelectedId);
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
-    console.log("current index -open lb",(currentIndex));
     let mediaModel = mediaFactory(mediaSelected);
     mediaModel.getMediaCardLightbox();  
     main.style.display =  "none" ;
-    
     btnRight.focus();
+
     return mediaSelected;
 
 }
@@ -181,15 +168,10 @@ function closeModalLb() {
 function displayPreviousMedia () {
     let liMedia = document.querySelector(".img-container");
     liMedia.remove();
-    console.log("click gauche");
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
-    console.log("current index",(currentIndex));
-
     previousIndex = currentIndex - 1;
-    console.log("previous", (previousIndex));
     // si l'index précedent est inférieur à 0 c a d on est sur la 1ère img affichée.
     if (previousIndex < 0) {
-        console.log("condition 0")
         currentIndex = (mediaDatas.length);
         previousIndex = currentIndex - 1;
         slidePrevious = mediaDatas[previousIndex];
@@ -197,9 +179,7 @@ function displayPreviousMedia () {
         mediaModel.getMediaCardLightbox();  
         imgSelectedId = mediaDatas[previousIndex].id;
     } else {
-        console.log("condition autre")
         slidePrevious = mediaDatas[previousIndex];
-        console.log("slideprevious", slidePrevious);
         let mediaModel = mediaFactory(slidePrevious);
         mediaModel.getMediaCardLightbox();  
         imgSelectedId = mediaDatas[previousIndex].id;
@@ -217,14 +197,10 @@ function displayNextMedia () {
     let liMedia = document.querySelector(".img-container");
     liMedia.remove();
     currentIndex = mediaDatas.map(media =>media.id).indexOf(imgSelectedId);
-    console.log("imgSelectedId", imgSelectedId);
-    console.log("current index",(currentIndex));
     nextIndex = currentIndex + 1;
-    console.log("next", (nextIndex));
     // si l'index suivant est égal ou inférieur à la taille du tableau media
     if (nextIndex > 0 && nextIndex <= mediaDatas.length-1) {
         slideNext = mediaDatas[nextIndex];
-        console.log("next", slideNext);
         let mediaModel = mediaFactory(slideNext);
         mediaModel.getMediaCardLightbox();  
         imgSelectedId = mediaDatas[nextIndex].id;
@@ -239,9 +215,7 @@ function displayNextMedia () {
 
     btnRight.focus();
  
-
 }
-
 
 /**
  * This function adds one like to the media clicked
@@ -249,7 +223,6 @@ function displayNextMedia () {
  */
 function addLikes (id) {
     let imgSelected= mediaDatas.find(elt => elt.id == id);
-    console.log( "data img click", imgSelected);
     let mediaModel = mediaFactory(imgSelected);
     mediaModel.addOneLike();
     counterLikes(); 
@@ -272,8 +245,6 @@ function handleKeyDown(e) {
 } 
 
 // close modal with the user presses escape touch
-//containerModal.addEventListener("keydown", handleKeyDownClose);
-
 function handleKeyDownClose(e) {
     if ( e.keyCode === 27) {
         closeModalLb();
@@ -283,9 +254,6 @@ function handleKeyDownClose(e) {
 // open modal when the user presses enter touch
 function handleKeyDownMedia(event, id) {
     if (event.keyCode === 13 ) {
-        console.log("press like");
-        console.log("id handlekdmedia", id);
-        console.log("element focus " , document.activeElement);
         return openModalLightbox(id);
     }
 }
@@ -293,18 +261,20 @@ function handleKeyDownMedia(event, id) {
 // add a like when the user presses enter touch
 function handleKeyDownEnterLikes (event, id) {
     if (event.keyCode === 13 ) {
-        console.log("press like");
         return addLikes(id);
     }
 }
+
+/**
+ * Close the dropdown filter when the user clicks outside
+ */
+window.addEventListener("mouseup", closeFilterMenu);
 
 /**
 * Initialisation of the page photographer.html
 */
 async function init() {
     data = await getPhotographersData();
-    console.log("data init",data);
-
     displayHeaderPhotographer(photographerDatas);
     displayGalleryPhotographer(mediaDatas);
     counterLikes();

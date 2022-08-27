@@ -30,7 +30,7 @@ function filterByPopularity() {
     displayGalleryPhotographer(mediasByPopularity);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = 'Popularité <i class="fa-solid fa-chevron-down"></i>';
+    filterBtn.innerHTML = 'Popularité <em class="fa-solid fa-chevron-down"></em>';
     mediaDatas = mediasByPopularity;
     
     
@@ -54,15 +54,15 @@ function filterByDate () {
     displayGalleryPhotographer(mediasByDate);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = 'Date <i class="fa-solid fa-chevron-down"></i>';
+    filterBtn.innerHTML = 'Date <em class="fa-solid fa-chevron-down"></em>';
     mediaDatas = mediasByDate;
+  
 }
 
 /**
  * this function displays medias by filter :title
  */
 function filterByTitle () {
-    console.log("filter title");
     let media = mediaDatas;
    
     mediasByTitle = media.sort(function compare(a,b) {
@@ -83,8 +83,9 @@ function filterByTitle () {
     displayGalleryPhotographer(mediasByTitle);
     closeFilterMenu();
     // eslint-disable-next-line
-    filterBtn.innerHTML = 'Titre <i class="fa-solid fa-chevron-down"></i>';                  
+    filterBtn.innerHTML = 'Titre <em class="fa-solid fa-chevron-down"></em>';                  
     mediaDatas = mediasByTitle;
+
 }
 
 
@@ -96,10 +97,7 @@ function filterByTitle () {
 function handleKeyDownEnterFilter (event) {
     console.log("enter filter");
     let value= event.target.id;
-    let elementFocus = document.activeElement;
-    console.log("value", value);
-    console.log("elt focus", elementFocus);
-    let liElt = document.querySelector(".filter-list-item");
+    
     if (event.keyCode === 13) {
         switch(value) {
             case "popularity" :
