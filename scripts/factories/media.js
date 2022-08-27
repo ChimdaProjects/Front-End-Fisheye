@@ -26,7 +26,7 @@ function mediaFactory(dataMedia) {
 
         card.innerHTML= 
             `
-                <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeydown="handleKeyDownMedia(event, ${id})">
+                <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeyup="handleKeyDownMedia(event, ${id})">
                 ${media}
                 </div>
                 <div class="card-infos" id="cardInfos-${id}"  >
