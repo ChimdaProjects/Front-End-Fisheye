@@ -38,14 +38,14 @@
 }
 
 .header-container .left-section .left-city {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 31px;
     color: #901C1C;
 
 }
 
 .header-container .left-section .left-tag {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 23px;
     color: #525252;
 }
@@ -239,7 +239,7 @@
     color: #911C1C;
 }
 
-.card-likes:hover , i:hover {
+.card-likes:hover, .fa-heart:hover {
     color:#DB8876;
 }
 
@@ -303,7 +303,7 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 form input #message {

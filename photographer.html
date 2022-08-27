@@ -158,7 +158,6 @@
             <div 
               class="formData" 
               class="divFirstName" 
-              autofocus= "autofocus" 
               id="divFirst" 
               data-error>
               <label for="prenom">
@@ -170,6 +169,8 @@
                 id="prenom" 
                 class="form-input text-control" 
                 autofocus 
+                aria-labelledby="prenom"
+                aria-label="saisir votre prénom"
                 aria-required=true 
                 aria-invalid=false 
                 tabindex="0"/>
@@ -186,6 +187,8 @@
                 name="nom" 
                 id="nom" 
                 class="form-input text-control" 
+                aria-labelledby="nom"
+                aria-label="saisir votre nom"
                 aria-required=true 
                 aria-invalid=false 
                 tabindex="0"/>  
@@ -202,6 +205,8 @@
               name="email" 
               id="email" 
               class="form-input text-control" 
+              aria-labelledby="email"
+              aria-label="saisir votre email"
               aria-required=true 
               aria-invalid=false 
               tabindex="0"/>
@@ -217,6 +222,8 @@
                 id="message" 
                 name="message" 
                 class="form-input text-control" 
+                aria-labelledby="message"
+                aria-label="saisir votre message à envoyer"
                 aria-required=true 
                 aria-invalid=false 
                 tabindex="0"

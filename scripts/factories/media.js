@@ -23,20 +23,21 @@ function mediaFactory(dataMedia) {
     function getMediaCardDOM() {
         const card = document.createElement("div");
         card.setAttribute("class", "card-container");
-        
+
         card.innerHTML= 
             `
-            <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeydown="handleKeyDownMedia(event, ${id})">
-              ${media}
+                <div class="card-gallery" tabindex="0" onclick="openModalLightbox(${id})" onkeydown="handleKeyDownMedia(event, ${id})">
+                ${media}
+                </div>
+                <div class="card-infos" id="cardInfos-${id}"  >
+                    <p class= "card-title" tabIndex="0"             >
+                        ${title}
+                    </p>
+                    <p class="card-likes" data-value=${likes}  data-id=${id} id="likes-${id}" onclick="addLikes(${id})" onkeydown=" handleKeyDownEnterLikes(event, ${id})" tabIndex="0">
+                        ${likes}
+                        <em  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></em>
+                    </p>
             </div>
-            <div class="card-infos" id="cardInfos-${id}"  >
-            <p class= "card-title" tabIndex="0"             >
-                ${title}
-            </p>
-            <p class="card-likes" data-value=${likes}  data-id=${id} id="likes-${id}" onclick="addLikes(${id})" onkeydown=" handleKeyDownEnterLikes(event, ${id})" tabIndex="0">
-                ${likes}
-                <em  class="fa fa-solid fa-heart" aria-label="likes onclick="addLikes(${id})"></em>
-            </p>
             `
         gallerySection.appendChild(card);
        

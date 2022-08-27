@@ -77,7 +77,7 @@ function checkContactForm(e) {
                 checkName=false;
                 divName.setAttribute("data-error-visible", "true");
                 divName.setAttribute("data-error", errorsMsg.last);
-                name.setAttribute("aria-invalid", "true");
+                lastname.setAttribute("aria-invalid", "true");
             }
             break;
 
@@ -104,6 +104,7 @@ function checkContactForm(e) {
                 checkMessage=false;
                 divMsg.setAttribute("data-error-visible", "true");
                 divMsg.setAttribute("data-error", errorsMsg.message);
+                mail.setAttribute("aria-invalid", "true");
             }
             break;
         default:
