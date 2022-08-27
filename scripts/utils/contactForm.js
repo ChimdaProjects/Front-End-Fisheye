@@ -62,6 +62,7 @@ function checkContactForm(e) {
                 
                 divFirst.setAttribute("data-error-visible", "true");
                 divFirst.setAttribute("data-error", errorsMsg.first);
+                divFirst.setAttribute("role", "alert");
                 firstname.setAttribute("aria-invalid", "true");
                 checkFirstName=false;
             }
@@ -77,6 +78,7 @@ function checkContactForm(e) {
                 checkName=false;
                 divName.setAttribute("data-error-visible", "true");
                 divName.setAttribute("data-error", errorsMsg.last);
+                divName.setAttribute("role", "alert");
                 lastname.setAttribute("aria-invalid", "true");
             }
             break;
@@ -91,6 +93,7 @@ function checkContactForm(e) {
                 checkEmail = false;
                 divEmail.setAttribute("data-error-visible", "true");
                 divEmail.setAttribute("data-error", errorsMsg.email);
+                divEmail.setAttribute("role", "alert");
                 mail.setAttribute("aria-invalid", "true");
             }
             break;
@@ -104,6 +107,7 @@ function checkContactForm(e) {
                 checkMessage=false;
                 divMsg.setAttribute("data-error-visible", "true");
                 divMsg.setAttribute("data-error", errorsMsg.message);
+                divMsg.setAttribute("role", "alert");
                 mail.setAttribute("aria-invalid", "true");
             }
             break;
@@ -147,21 +151,26 @@ function submitForm(e) {
             // on affiche le message d'erreur
             divFirst.setAttribute("data-error-visible", "true");
             divFirst.setAttribute("data-error", errorsMsg.first);
+            divFirst.setAttribute("role", "alert");
             firstname.setAttribute("aria-invalid"," true");
+            
         }
         if(!checkName) { // vérification du champ prénom
             divName.setAttribute("data-error-visible", "true");
             divName.setAttribute("data-error", errorsMsg.last);
+            divName.setAttribute("role", "alert");
             lastname.setAttribute("aria-invalid", "true");
         }
         if(!checkEmail) { // vérification du  champ email
             divEmail.setAttribute("data-error-visible", "true");
             divEmail.setAttribute("data-error", errorsMsg.email);
+            divEmail.setAttribute("role", "alert");
             mail.setAttribute("aria-invalid", "true");
         }
         if(!checkMessage) { // vérification du champ date de naissance
             divMsg.setAttribute("data-error-visible", "true");
             divMsg.setAttribute("data-error", errorsMsg.message);
+            divMsg.setAttribute("role", "alert");
             msg.setAttribute("aria-invalid", "true");
         }
     }
