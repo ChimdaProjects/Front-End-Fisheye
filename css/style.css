@@ -51,8 +51,8 @@ h1 {
     border-radius: 15px;
     box-shadow:  1px 1px 5px #D3573C;
     width:80%;
-    height: 350px;  
-    border-style: dotted;          
+    height: 350px;     
+    outline: 3px solid #D3573C;      
 
    
 }   
