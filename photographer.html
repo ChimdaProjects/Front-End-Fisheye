@@ -54,6 +54,7 @@
                     class="filter-list-item" 
                     data-value="popularity" 
                     tabindex="0"
+                    aria-label="filter by popularity"
                     role="button">
                       Popularité 
                       <em class="fa-solid fa-chevron-up"  onclick="closeFilterMenu()"></em>
@@ -64,6 +65,7 @@
                     id="date" 
                     class="filter-list-item" 
                     data-value="date" 
+                    aria-label="filter by date"
                     tabindex="0" 
                     role="button">
                       Date
@@ -76,6 +78,7 @@
                     class="filter-list-item" 
                     data-value="title" 
                     tabindex="0" 
+                    aria-label="filter by date"
                     role="button">
                       Titre
                   </li>
@@ -112,7 +115,7 @@
           onclick="displayPreviousMedia()"
           onkeydown="handleKeyDown(event)" >
             <em aria-hidden="true" class=" fa fa-solid fa-angle-left"></em>
-            <p class="hidden">Previous</p>
+            <p class="hidden-modal">Previous</p>
         </button>
         <div id="content_modal">
           <ul 
@@ -127,7 +130,7 @@
           onkeydown="handleKeyDown(event)" 
           tabindex="0"> 
             <em aria-hidden="true" class=" fa fa-solid fa-angle-right"></em>
-            <p class="hidden">Next</p>
+            <p class="hidden-modal">Next</p>
         </button>
       </div>
     </div>
@@ -156,7 +159,7 @@
           method="get">
         
 				<div role="group" aria-labelledby="coordonnees">
-            <p id="coordonnees" class="hidden">Vos coordonnées</p> 
+            <p id="coordonnees" class="hidden-modal">Vos coordonnées</p> 
             <div 
               class="formData" 
               class="divFirstName" 

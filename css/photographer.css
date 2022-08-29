@@ -401,6 +401,8 @@ li:nth-child(1){
     display: flex;
 }
 
+
+
 .fa-angle-left, .fa-angle-right {
     position: absolute;
     top: 50%;
@@ -430,7 +432,9 @@ li:hover, li:focus {
 }
 
 .card-video:focus, .card-img:focus, 
-.card-title:focus, .card-likes:focus {   
+.card-title:focus, .card-likes:focus,
+#rightBtn:focus, #leftBtn:focus ,
+#close_modal_lb:focus    {   
     transform: scale(1.1);
     outline: 3px solid #D3573C;
     color: #D3573C
@@ -441,7 +445,7 @@ li:hover, li:focus {
 }
 
 
-.hidden {
+.hidden-modal {
     height: 1px;
     left: 0;
     overflow: hidden;

@@ -57,7 +57,7 @@ h1 {
    
 }   
 
-.photographer_section article:active,
+/*.photographer_section article:active,
 a:active {
     color: #000000;
     background-color: #f6acac;
@@ -66,7 +66,7 @@ a:active {
     width:80%;
     height: 350px;              
 
-}   
+}   */
 
 .photographer_section a {
     display: flex;
