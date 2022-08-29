@@ -12,8 +12,7 @@ const filterBtn = document.querySelector("#filterBtn");
  */
 function filterByPopularity() {
     let media = mediaDatas;
-    console.log("media", media);
-    console.log("filter popu");
+    
     mediasByPopularity = media.sort(function compare(a,b) {
         if(a.likes > b.likes) {
             return -1;
@@ -23,8 +22,7 @@ function filterByPopularity() {
         }
         return 0;
     });
-    console.log("media filtré par popu", mediasByPopularity);
-    
+
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByPopularity);
@@ -32,7 +30,9 @@ function filterByPopularity() {
     // eslint-disable-next-line
     filterBtn.innerHTML = 'Popularité <em class="fa-solid fa-chevron-down"></em>';
     mediaDatas = mediasByPopularity;
-    
+    gallerySection.setAttribute("aria-labelledby", "popularity");
+    let liPopu = document.querySelector("#popularity");
+    liPopu.setAttribute("aria-selected", "true");
     
 }
 
@@ -48,7 +48,6 @@ function filterByDate () {
         return b - a;
     })
 
-    console.log("media filtré par dat", mediasByDate);
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByDate);
@@ -56,6 +55,9 @@ function filterByDate () {
     // eslint-disable-next-line
     filterBtn.innerHTML = 'Date <em class="fa-solid fa-chevron-down"></em>';
     mediaDatas = mediasByDate;
+    gallerySection.setAttribute("aria-labelledby", "date");
+    let liDate = document.querySelector("#date");
+    liDate.setAttribute("aria-selected", "true");
   
 }
 
@@ -77,7 +79,7 @@ function filterByTitle () {
         }
         return 0;
     });
-    console.log("media filtré par titre", mediasByTitle);
+
     gallerySection.innerHTML = "";
     // Display media with filter 
     displayGalleryPhotographer(mediasByTitle);
@@ -85,7 +87,9 @@ function filterByTitle () {
     // eslint-disable-next-line
     filterBtn.innerHTML = 'Titre <em class="fa-solid fa-chevron-down"></em>';                  
     mediaDatas = mediasByTitle;
-
+    gallerySection.setAttribute("aria-labelledby", "title");
+    let liTitle = document.querySelector("#title");
+    liTitle.setAttribute("aria-selected", "true");
 }
 
 
@@ -95,9 +99,8 @@ function filterByTitle () {
  * @returns 
  */
 function handleKeyDownEnterFilter (event) {
-    console.log("enter filter");
     let value= event.target.id;
-    
+
     if (event.keyCode === 13) {
         switch(value) {
             case "popularity" :
@@ -109,7 +112,8 @@ function handleKeyDownEnterFilter (event) {
             case "title":
                 return filterByTitle();
               
-            default:console.log("il y a eu un pepin !", console.error());
+            default:
+                console.log("il y a eu un pepin !", console.error());
         }
     } 
     
